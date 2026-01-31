@@ -1,0 +1,2366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1a1a1a">
+    <title>Zero to Hero Ayurveda – Profit Blueprint</title>
+
+    <!-- Tailwind CSS - Production CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.1/dist/tailwind.min.css" rel="stylesheet">
+
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap');
+
+        :root {
+            /* Black & Gold Premium Theme */
+            --black-primary: #0a0a0a;
+            --black-secondary: #1a1a1a;
+            --black-tertiary: #2a2a2a;
+            --gold-primary: #d4af37;
+            --gold-secondary: #f4c430;
+            --gold-dark: #b8941e;
+            --gold-light: #ffd700;
+
+            --white-primary: #ffffff;
+            --white-off: #f8f8f8;
+            --gray-light: #e5e5e5;
+            --gray-medium: #999999;
+            --gray-dark: #666666;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--black-primary);
+            color: var(--white-primary);
+            overflow-x: hidden;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--black-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold-primary);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--gold-secondary);
+        }
+
+        /* Typography */
+        .display-font {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Header Styles */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .site-header.scrolled {
+            box-shadow: 0 4px 30px rgba(212, 175, 55, 0.15);
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--gold-primary), var(--gold-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-link {
+            position: relative;
+            color: var(--gray-light);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--gold-primary);
+            transform: translateX(-50%);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--gold-secondary);
+        }
+
+        .nav-link:hover::after {
+            width: 80%;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(212, 175, 55, 0.03) 0%, transparent 50%),
+                var(--black-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(80px);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(-50px, -50px) scale(1.1);
+            }
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--white-primary) 0%, var(--gold-secondary) 50%, var(--gold-primary) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: slideUp 1s ease-out;
+        }
+
+        /* Typing Animation */
+        .typing-text {
+            display: inline-block;
+            border-right: 3px solid var(--gold-primary);
+            animation: blink 0.7s step-end infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                border-color: transparent;
+            }
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            color: var(--gray-light);
+            margin-bottom: 2rem;
+            max-width: 700px;
+            line-height: 1.6;
+            animation: slideUp 1s ease-out 0.2s both;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* CTA Button */
+        .cta-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1.25rem 2.5rem;
+            background: linear-gradient(135deg, var(--gold-primary), var(--gold-secondary));
+            color: var(--black-primary);
+            font-weight: 700;
+            font-size: 1.125rem;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.3);
+            position: relative;
+            overflow: hidden;
+            animation: slideUp 1s ease-out 0.4s both;
+        }
+
+        .cta-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--gold-secondary), var(--gold-light));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .cta-primary:hover::before {
+            opacity: 1;
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(212, 175, 55, 0.5);
+        }
+
+        .cta-primary span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Gold Badge */
+        .gold-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(244, 196, 48, 0.1));
+            border: 1px solid var(--gold-primary);
+            border-radius: 50px;
+            color: var(--gold-secondary);
+            font-weight: 600;
+            font-size: 0.875rem;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--white-primary), var(--gold-primary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        /* Feature Cards */
+        .feature-card {
+            background: linear-gradient(135deg, var(--black-secondary), var(--black-tertiary));
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.2);
+            border-color: var(--gold-primary);
+        }
+
+        .feature-icon {
+            width: 190px;
+            height: 190px;
+            background: linear-gradient(135deg, var(--gold-primary), var(--gold-secondary));
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            color: var(--black-primary);
+            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Swiper Testimonials */
+        .testimonial-swiper {
+            padding: 2rem 0 4rem;
+        }
+
+        .testimonial-card {
+            background: linear-gradient(135deg, var(--black-secondary), var(--black-tertiary));
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            height: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .testimonial-card:hover {
+            border-color: var(--gold-primary);
+            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.2);
+        }
+
+        .swiper-pagination-bullet {
+            background: var(--gray-medium);
+            opacity: 0.5;
+        }
+
+        .swiper-pagination-bullet-active {
+            background: var(--gold-primary);
+            opacity: 1;
+        }
+
+        /* Ceremony Section */
+        .ceremony-section {
+            background: var(--black-secondary);
+            padding: 6rem 2rem;
+        }
+
+        .image-collage {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .collage-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            aspect-ratio: 1;
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .collage-item:hover {
+            transform: scale(1.05);
+            border-color: var(--gold-primary);
+            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.3);
+        }
+
+        .collage-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .collage-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 400px;
+            height: 100vh;
+            background: var(--black-secondary);
+            box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5);
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1001;
+            padding: 2rem;
+            overflow-y: auto;
+            border-left: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--gold-primary);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* Footer */
+        .site-footer {
+            background: var(--black-secondary);
+            color: var(--gray-light);
+            padding: 4rem 2rem 2rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .footer-link:hover {
+            color: var(--gold-primary);
+        }
+
+        /* Fade In Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Contact Form */
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--black-tertiary);
+            padding: 3rem;
+            border-radius: 24px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: 0 20px 80px rgba(212, 175, 55, 0.1);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: var(--black-secondary);
+            color: var(--white-primary);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1);
+        }
+
+        .form-input::placeholder {
+            color: var(--gray-medium);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.25rem;
+            background: linear-gradient(135deg, var(--gold-primary), var(--gold-secondary));
+            color: var(--black-primary);
+            font-weight: 700;
+            font-size: 1.125rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+        }
+
+
+        .gallery {
+            display: grid;
+            grid-column-gap: 12px;
+            grid-row-gap: 12px;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-auto-rows: 8px;
+        }
+
+        .gallery-item {
+            transition: all 0.5s ease;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.025);
+        }
+
+        .gallery-item.full {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 50;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .gallery-item.full .content {
+            background-color: rgba(10, 10, 10, 0.95) !important;
+            height: 100%;
+            width: 100%;
+            display: grid;
+            padding: 2rem;
+        }
+
+        .gallery-item.full .content img {
+            margin: auto;
+            max-width: 90%;
+            max-height: 90%;
+            animation: zoomin 0.8s ease;
+            outline: 3px solid var(--gold-primary);
+            box-shadow:
+                0 0 30px rgba(212, 175, 55, 0.5),
+                0 0 60px rgba(212, 175, 55, 0.3);
+        }
+
+        .gallery img {
+            max-width: 100%;
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            outline: 2px solid var(--gold-primary);
+            outline-offset: -2px;
+            box-shadow:
+                0 4px 16px rgba(0, 0, 0, 0.6),
+                0 0 20px rgba(212, 175, 55, 0.2),
+                inset 0 0 0 1px rgba(212, 175, 55, 0.3);
+            transition: all 0.5s ease;
+            opacity: 0;
+        }
+
+        .gallery img.loaded {
+            opacity: 1;
+        }
+
+        .gallery img:hover {
+            box-shadow:
+                0 8px 32px rgba(0, 0, 0, 0.8),
+                0 0 40px rgba(212, 175, 55, 0.4),
+                inset 0 0 0 2px rgba(212, 175, 55, 0.5);
+            outline: 2px solid var(--gold-secondary);
+        }
+
+        .content {
+            padding: 4px;
+            background-color: transparent;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes zoomin {
+            0% {
+                max-width: 50%;
+                transform: rotate(-30deg);
+                filter: blur(4px);
+            }
+
+            30% {
+                filter: blur(4px);
+                transform: rotate(-80deg);
+            }
+
+            70% {
+                max-width: 50%;
+                transform: rotate(45deg);
+            }
+
+            100% {
+                max-width: 100%;
+                transform: rotate(0deg);
+                filter: blur(0);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                grid-column-gap: 8px;
+                grid-row-gap: 8px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(45%, 1fr));
+            }
+        }
+
+        /* Title Styling */
+        .title {
+            background: linear-gradient(135deg, var(--gold-primary), var(--gold-light), var(--gold-primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .subtitle {
+            color: var(--gray-medium);
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex items-center gap-3">
+                    <div class="w-16 h-16 rounded-xl flex items-center justify-center">
+                        <img src="./Image/logo.png" class="w-full h-full object-contain drop-shadow-lg" alt="Logo">
+                    </div>
+                    <span class="display-font logo-text">Ayurveda Blueprint</span>
+                </div>
+
+                <!-- Desktop Nav -->
+                <div class="hidden lg:flex items-center gap-8">
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#features" class="nav-link">Features</a>
+                    <a href="#ceremony" class="nav-link">Achievements</a>
+                    <a href="#success" class="nav-link">Success Stories</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
+
+                <!-- CTA & Mobile Menu -->
+                <div class="flex items-center gap-4">
+                    <button onclick="scrollToContact()"
+                        style="background: linear-gradient(135deg, var(--gold-primary), var(--gold-secondary)); color: var(--black-primary);"
+                        class="hidden md:block px-6 py-2.5 font-semibold rounded-full hover:opacity-90 transition-all">
+                        Get Started
+                    </button>
+                    <div class="hamburger lg:hidden cursor-pointer" onclick="toggleMobileMenu()">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <div class="flex justify-between items-center mb-8">
+            <span class="display-font text-2xl font-bold logo-text">Menu</span>
+            <div class="hamburger cursor-pointer" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="space-y-4">
+            <a href="#about" class="block text-lg font-semibold hover:text-yellow-500 transition-colors"
+                onclick="toggleMobileMenu()" style="color: var(--gray-light);">About</a>
+            <a href="#features" class="block text-lg font-semibold hover:text-yellow-500 transition-colors"
+                onclick="toggleMobileMenu()" style="color: var(--gray-light);">Features</a>
+            <a href="#ceremony" class="block text-lg font-semibold hover:text-yellow-500 transition-colors"
+                onclick="toggleMobileMenu()" style="color: var(--gray-light);">Achievements</a>
+            <a href="#success" class="block text-lg font-semibold hover:text-yellow-500 transition-colors"
+                onclick="toggleMobileMenu()" style="color: var(--gray-light);">Success Stories</a>
+            <a href="#contact" class="block text-lg font-semibold hover:text-yellow-500 transition-colors"
+                onclick="toggleMobileMenu()" style="color: var(--gray-light);">Contact</a>
+            <button onclick="scrollToContact(); toggleMobileMenu()"
+                class="w-full mt-6 px-6 py-3 font-semibold rounded-full transition-all"
+                style="background: linear-gradient(135deg, var(--gold-primary), var(--gold-secondary)); color: var(--black-primary);">
+                Get Started
+            </button>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+        <div class="hero-content">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="gold-badge mb-6" style="animation: slideUp 1s ease-out 0.1s both;">
+                        🔥 Limited Monthly Slots Available
+                    </div>
+                    <h1 class="display-font hero-title">
+                        Build a Profitable <span class="typing-text" id="typingText">Ayurvedic</span> Brand
+                    </h1>
+                    <div class="mb-6" style="animation: slideUp 1s ease-out 0.3s both;">
+                        <p class="text-xl font-bold mb-2" style="color: var(--gold-secondary);">1-to-1 Private
+                            Consulting with Sandeep Kumar</p>
+                        <p style="color: var(--gray-medium);">Founder & Owner of SS Herbal | Proven Ayurvedic Brand
+                            Builder</p>
+                    </div>
+                    <p class="hero-subtitle">
+                        Sandeep Kumar didn't just build an Ayurvedic brand — he built a <strong
+                            style="color: var(--gold-secondary);">system-driven, profitable Ayurvedic business</strong>.
+                        Now, you can build your own brand with personal guidance from the man who has already done it.
+                    </p>
+                    <div class="p-4 mb-6 rounded"
+                        style="background: rgba(212, 175, 55, 0.1); border-left: 4px solid var(--gold-primary); animation: slideUp 1s ease-out 0.4s both;">
+                        <p style="color: var(--gray-light);" class="font-semibold">👉 No course. No webinar. Only real
+                            1-to-1 consulting.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-4">
+                        <button onclick="scrollToContact()" class="cta-primary">
+                            <span>Book Your Private Strategy Call</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Hero Image -->
+                <div class="relative" style="animation: slideUp 1s ease-out 0.7s both;">
+                    <div class="absolute inset-0 rounded-3xl blur-3xl"
+                        style="background: linear-gradient(to bottom right, rgba(212, 175, 55, 0.2), rgba(244, 196, 48, 0.1));">
+                    </div>
+                    <img src="./Image/Sandeep.jpeg" alt="Sandeep Kumar"
+                        class="relative rounded-3xl shadow-2xl w-full object-cover"
+                        style="max-height: 600px; border: 2px solid rgba(212, 175, 55, 0.3);">
+                    <div class="absolute bottom-0 left-0 right-0 p-6 rounded-b-3xl"
+                        style="background: linear-gradient(to top, rgba(10, 10, 10, 0.9), transparent);">
+                        <p class="text-white font-bold text-xl">Sandeep Kumar</p>
+                        <p class="text-sm" style="color: var(--gold-secondary);">Founder, SS Herbal</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-8" id="about" style="background: var(--black-secondary);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <!-- Image Section -->
+                <div class="order-2 lg:order-1 fade-in">
+                    <div class="relative">
+                        <div class="absolute -inset-4 rounded-3xl blur-2xl opacity-30"
+                            style="background: linear-gradient(to bottom right, rgba(212, 175, 55, 0.3), rgba(244, 196, 48, 0.2));">
+                        </div>
+                        <img src="./Image/about.jpeg" alt="Sandeep Kumar - SS Herbal Founder"
+                            class="relative rounded-2xl shadow-2xl w-full object-cover"
+                            style="max-height: 500px; border: 2px solid rgba(212, 175, 55, 0.3);">
+                        <div class="absolute -bottom-6 -right-6 rounded-2xl shadow-xl p-6 max-w-xs"
+                            style="background: var(--black-tertiary); border: 1px solid rgba(212, 175, 55, 0.3);">
+                            <div class="flex items-center gap-3 mb-2">
+                                <i class="fas fa-quote-left text-2xl" style="color: var(--gold-primary);"></i>
+                            </div>
+                            <p class="text-sm italic" style="color: var(--gray-light);">
+                                "I built SS Herbal with discipline, systems, and a profit-first mindset. Now I help
+                                others do the same."
+                            </p>
+                            <p class="text-xs font-semibold mt-2" style="color: var(--gold-secondary);">- Sandeep Kumar
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content Section -->
+                <div class="order-1 lg:order-2 fade-in">
+                    <div class="gold-badge mb-4">
+                        👤 Your Mentor
+                    </div>
+                    <h2 class="display-font text-4xl md:text-5xl font-bold mb-6 section-title">
+                        Meet Sandeep Kumar
+                    </h2>
+                    <div class="space-y-4 text-lg leading-relaxed" style="color: var(--gray-light);">
+                        <p>
+                            Sandeep Kumar is the <strong style="color: var(--gold-secondary);">Founder of SS
+                                Herbal</strong>, a growing Ayurvedic brand manufacturing multiple Ayurvedic supplements
+                            across various health categories.
+                        </p>
+                        <p>He started with:</p>
+                        <ul class="space-y-2 ml-6">
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-check-circle mt-1" style="color: var(--gold-primary);"></i>
+                                <span>A clear vision</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-check-circle mt-1" style="color: var(--gold-primary);"></i>
+                                <span>Limited resources</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-check-circle mt-1" style="color: var(--gold-primary);"></i>
+                                <span>Zero ready-made systems</span>
+                            </li>
+                        </ul>
+                        <p>
+                            Through <strong>real market experience, smart decisions, and disciplined execution</strong>,
+                            he turned SS Herbal into a profitable and scalable Ayurvedic company.
+                        </p>
+                        <div class="p-4 rounded-r-lg"
+                            style="background: rgba(212, 175, 55, 0.1); border-left: 4px solid var(--gold-primary);">
+                            <p style="color: var(--gray-light);">
+                                📰 His work and business journey have been <strong>featured in PR articles & news
+                                    publications</strong>, strengthening his credibility as a trusted Ayurvedic
+                                entrepreneur.
+                            </p>
+                        </div>
+                        <p class="text-xl font-semibold" style="color: var(--gold-secondary);">
+                            Today, Sandeep Kumar works closely with serious founders and investors, helping them build
+                            real Ayurvedic brands — not just labels.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Profit Journey Section -->
+    <section class="py-8"
+        style="background: linear-gradient(to bottom right, var(--black-primary), var(--black-secondary));">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <div class="gold-badge mb-4">
+                    💰 The SS Herbal Success Story
+                </div>
+                <h2 class="display-font text-4xl md:text-5xl font-bold mb-6 section-title">
+                    How SS Herbal Became a Profitable Ayurvedic Business
+                </h2>
+                <p class="text-xl max-w-3xl mx-auto" style="color: var(--gray-light);">
+                    Unlike most brands, SS Herbal was built with a <strong
+                        style="color: var(--gold-secondary);">profit-first approach</strong>.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                <div class="feature-card fade-in">
+                    <div class=" rounded-2xl  mb-4"
+                        style="background: linear-gradient(to bottom right, var(--gold-primary),   var(--gold-secondary)); width:15rem; height: 15rem;">
+                        <img src="./Image/Story1.png" class="w-full h-auto rounded-2xl" alt="">
+                    </div>
+                    <h3 class="text-xl font-bold mb-3" style="color: var(--white-primary);">High-Margin Products</h3>
+                    <p style="color: var(--gray-medium);">Strategic product categories designed for maximum
+                        profitability and sustainability.</p>
+                </div>
+
+                <div class="feature-card fade-in">
+                    <div class=" rounded-2xl  mb-4"
+                        style="background: linear-gradient(to bottom right, var(--gold-primary),   var(--gold-secondary)); width:15rem; height: 15rem;">
+                        <img src="./Image/Story2.png" class="w-full h-auto rounded-2xl" alt="">
+                    </div>
+                    <h3 class="text-xl font-bold mb-3" style="color: var(--white-primary);">Repeat Purchase Model</h3>
+                    <p style="color: var(--gray-medium);">Ayurvedic supplements that customers reorder consistently,
+                        ensuring stable revenue.</p>
+                </div>
+
+                <div class="feature-card fade-in">
+                    <div class=" rounded-2xl  mb-4"
+                        style="background: linear-gradient(to bottom right, var(--gold-primary),   var(--gold-secondary)); width:15rem; height: 15rem;">
+                        <img src="./Image/Story3.png" class="w-full h-auto rounded-2xl" alt="">
+                    </div>
+                    <h3 class="text-xl font-bold mb-3" style="color: var(--white-primary);">Smart Pricing Strategy</h3>
+                    <p style="color: var(--gray-medium);">Pricing and margin control that ensures profitability while
+                        staying competitive.</p>
+                </div>
+
+                <div class="feature-card fade-in">
+                    <div class=" rounded-2xl  mb-4"
+                        style="background: linear-gradient(to bottom right, var(--gold-primary),   var(--gold-secondary)); width:15rem; height: 15rem;">
+                        <img src="./Image/Story4.png" class="w-full h-auto rounded-2xl" alt="">
+                    </div>
+                    <h3 class="text-xl font-bold mb-3" style="color: var(--white-primary);">Lean Operations</h3>
+                    <p style="color: var(--gray-medium);">Cost-disciplined operations that maximize efficiency without
+                        compromising quality.</p>
+                </div>
+
+                <div class="feature-card fade-in">
+                    <div class=" rounded-2xl  mb-4"
+                        style="background: linear-gradient(to bottom right, var(--gold-primary),   var(--gold-secondary)); width:15rem; height: 15rem;">
+                        <img src="./Image/Story5.png" class="w-full h-auto rounded-2xl" alt="">
+                    </div>
+                    <h3 class="text-xl font-bold mb-3" style="color: var(--white-primary);">ROI-Driven Marketing</h3>
+                    <p style="color: var(--gray-medium);">Marketing systems carefully designed to deliver measurable
+                        returns on investment.</p>
+                </div>
+
+                <div class="feature-card fade-in">
+                    <div class=" rounded-2xl  mb-4"
+                        style="background: linear-gradient(to bottom right, var(--gold-primary),   var(--gold-secondary)); width:15rem; height: 15rem;">
+                        <img src="./Image/Story6.png" class="w-full h-auto rounded-2xl" alt="">
+                    </div>
+                    <h3 class="text-xl font-bold mb-3" style="color: var(--white-primary);">Predictable Growth</h3>
+                    <p style="color: var(--gray-medium);">A stable, growing business with predictable profits — not
+                        dependency on luck.</p>
+                </div>
+            </div>
+
+            <div class="rounded-2xl p-8 md:p-12 text-center fade-in"
+                style="background: linear-gradient(to right, var(--gold-primary), var(--gold-secondary));">
+                <h3 class="text-3xl font-bold mb-4" style="color: var(--black-primary);">The Result?</h3>
+                <p class="text-xl mb-6" style="color: var(--black-primary);">
+                    👉 A stable, growing Ayurvedic business with <strong>predictable profits</strong> — not dependency
+                    on luck.
+                </p>
+                <p class="text-lg" style="color: var(--black-secondary);">
+                    This consulting helps you build the same foundation.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Problem Section -->
+    <section class="py-8" style="background: var(--black-secondary);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <div class="inline-block px-4 py-2 rounded-full text-sm font-semibold mb-4"
+                    style="background: rgba(239, 68, 68, 0.2); border: 1px solid #ef4444; color: #fca5a5;">
+                    ⚠️ The Real Problem
+                </div>
+                <h2 class="display-font text-4xl md:text-5xl font-bold mb-6 section-title">
+                    Why Most Ayurvedic Businesses Struggle
+                </h2>
+                <p class="text-xl max-w-3xl mx-auto" style="color: var(--gray-light);">
+                    Ayurveda has huge demand — but only <strong style="color: var(--gold-secondary);">well-structured
+                        brands</strong> win long term.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="rounded-2xl p-6 shadow-lg fade-in"
+                    style="background: var(--black-tertiary); border-left: 4px solid #ef4444;">
+                    <div class="flex items-start gap-4">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-times-circle text-2xl" style="color: #ef4444;"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold mb-2" style="color: var(--white-primary);">Wrong Product Selection</h3>
+                            <p style="color: var(--gray-medium);">Choosing products without market research or profit
+                                analysis</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rounded-2xl p-6 shadow-lg fade-in"
+                    style="background: var(--black-tertiary); border-left: 4px solid #ef4444;">
+                    <div class="flex items-start gap-4">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-times-circle text-2xl" style="color: #ef4444;"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold mb-2" style="color: var(--white-primary);">Compliance Issues</h3>
+                            <p style="color: var(--gray-medium);">Ignoring legal structure and regulatory requirements
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rounded-2xl p-6 shadow-lg fade-in"
+                    style="background: var(--black-tertiary); border-left: 4px solid #ef4444;">
+                    <div class="flex items-start gap-4">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-times-circle text-2xl" style="color: #ef4444;"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold mb-2" style="color: var(--white-primary);">Pricing Mistakes</h3>
+                            <p style="color: var(--gray-medium);">Underpricing products and killing profit margins from
+                                day one</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rounded-2xl p-6 shadow-lg fade-in"
+                    style="background: var(--black-tertiary); border-left: 4px solid #ef4444;">
+                    <div class="flex items-start gap-4">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-times-circle text-2xl" style="color: #ef4444;"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold mb-2" style="color: var(--white-primary);">Blind Marketing Spend</h3>
+                            <p style="color: var(--gray-medium);">Wasting money on marketing without tracking ROI or
+                                results</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rounded-2xl p-6 shadow-lg fade-in"
+                    style="background: var(--black-tertiary); border-left: 4px solid #ef4444;">
+                    <div class="flex items-start gap-4">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-times-circle text-2xl" style="color: #ef4444;"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold mb-2" style="color: var(--white-primary);">No Scalable Systems</h3>
+                            <p style="color: var(--gray-medium);">Operating without proper systems that allow
+                                sustainable growth</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rounded-2xl p-6 shadow-lg fade-in"
+                    style="background: var(--black-tertiary); border-left: 4px solid #ef4444;">
+                    <div class="flex items-start gap-4">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-times-circle text-2xl" style="color: #ef4444;"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold mb-2" style="color: var(--white-primary);">Cash Flow Problems</h3>
+                            <p style="color: var(--gray-medium);">Poor financial planning leading to constant money
+                                struggles</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="py-8" style="background: linear-gradient(to bottom right, var(--gold-dark), var(--gold-primary));">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <div class="inline-block px-4 py-2 rounded-full text-sm font-semibold mb-4"
+                    style="background: rgba(255, 255, 255, 0.2); color: white; border: 1px solid rgba(255, 255, 255, 0.3);">
+                    ✅ The Solution
+                </div>
+                <h2 class="display-font text-4xl md:text-5xl font-bold mb-6" style="color: var(--black-primary);">
+                    This Is Not Training. This Is Business Consulting.
+                </h2>
+                <p class="text-xl max-w-3xl mx-auto" style="color: var(--black-secondary);">
+                    In this 1-to-1 consulting, Sandeep Kumar:
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="backdrop-blur-lg rounded-2xl p-8 border fade-in"
+                    style="background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.2);">
+                    <div class="flex items-start gap-4">
+                        <div class="h-26 w-26 rounded-xl" style="background: var(--black-primary);">
+                            <img src="./Image/Solution1.png" class="w-full h-auto rounded-2xl shadow-2xl " alt="">
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2" style="color: var(--black-primary);">Understands Your
+                                Setup</h3>
+                            <p style="color: var(--black-secondary);">Deep dive into your idea or existing business to
+                                identify opportunities</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="backdrop-blur-lg rounded-2xl p-8 border fade-in"
+                    style="background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.2);">
+                    <div class="flex items-start gap-4">
+                        <div class="h-26 w-26 rounded-xl" style="background: var(--black-primary);">
+                            <img src="./Image/Solution2.png" class="w-full h-auto rounded-2xl shadow-2xl " alt="">
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2" style="color: var(--black-primary);">Identifies Real
+                                Profit</h3>
+                            <p style="color: var(--black-secondary);">Pinpoint exactly where your business can generate
+                                sustainable profits</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="backdrop-blur-lg rounded-2xl p-8 border fade-in"
+                    style="background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.2);">
+                    <div class="flex items-start gap-4">
+                        <div class="h-26 w-26 rounded-xl" style="background: var(--black-primary);">
+                            <img src="./Image/Solution3.png" class="w-full h-auto rounded-2xl shadow-2xl " alt="">
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2" style="color: var(--black-primary);">Creates Clear
+                                Roadmap</h3>
+                            <p style="color: var(--black-secondary);">Step-by-step plan from zero to scale tailored to
+                                your situation</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="backdrop-blur-lg rounded-2xl p-8 border fade-in"
+                    style="background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.2);">
+                    <div class="flex items-start gap-4">
+                        <div class="h-26 w-26 rounded-xl" style="background: var(--black-primary);">
+                            <img src="./Image/Solution4.png" class="w-full h-auto rounded-2xl shadow-2xl " alt="">
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2" style="color: var(--black-primary);">Avoids Costly
+                                Mistakes</h3>
+                            <p style="color: var(--black-secondary);">Navigate around common pitfalls that sink most
+                                Ayurvedic startups</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 text-center fade-in">
+                <p class="text-2xl font-bold mb-6" style="color: var(--black-primary);">
+                    👉 Everything is customised to your business goals.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Who This Is For Section -->
+    <section class="py-8" style="background: var(--black-primary);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <div class="gold-badge mb-4">
+                    🎯 Who This Is For
+                </div>
+                <h2 class="display-font text-4xl md:text-5xl font-bold mb-6 section-title">
+                    Is This Consulting Right for You?
+                </h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+                <!-- Ideal For -->
+                <div class="fade-in">
+                    <h3 class="text-2xl font-bold mb-6 flex items-center gap-3" style="color: var(--gold-secondary);">
+                        <span class="text-3xl">✅</span>
+                        This is ideal for:
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-3 p-4 rounded-lg"
+                            style="background: rgba(212, 175, 55, 0.1); border: 1px solid rgba(212, 175, 55, 0.2);">
+                            <i class="fas fa-check-circle mt-1" style="color: var(--gold-primary);"></i>
+                            <span style="color: var(--gray-light);">Small-scale Ayurvedic brand owners</span>
+                        </div>
+                        <div class="flex items-start gap-3 p-4 rounded-lg"
+                            style="background: rgba(212, 175, 55, 0.1); border: 1px solid rgba(212, 175, 55, 0.2);">
+                            <i class="fas fa-check-circle mt-1" style="color: var(--gold-primary);"></i>
+                            <span style="color: var(--gray-light);">New founders planning to enter Ayurveda</span>
+                        </div>
+                        <div class="flex items-start gap-3 p-4 rounded-lg"
+                            style="background: rgba(212, 175, 55, 0.1); border: 1px solid rgba(212, 175, 55, 0.2);">
+                            <i class="fas fa-check-circle mt-1" style="color: var(--gold-primary);"></i>
+                            <span style="color: var(--gray-light);">Investors exploring Ayurvedic FMCG</span>
+                        </div>
+                        <div class="flex items-start gap-3 p-4 rounded-lg"
+                            style="background: rgba(212, 175, 55, 0.1); border: 1px solid rgba(212, 175, 55, 0.2);">
+                            <i class="fas fa-check-circle mt-1" style="color: var(--gold-primary);"></i>
+                            <span style="color: var(--gray-light);">Doctors / manufacturers wanting their own
+                                brand</span>
+                        </div>
+                        <div class="flex items-start gap-3 p-4 rounded-lg"
+                            style="background: rgba(212, 175, 55, 0.1); border: 1px solid rgba(212, 175, 55, 0.2);">
+                            <i class="fas fa-check-circle mt-1" style="color: var(--gold-primary);"></i>
+                            <span style="color: var(--gray-light);">Entrepreneurs serious about long-term profits</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Not For -->
+                <div class="fade-in">
+                    <h3 class="text-2xl font-bold mb-6 flex items-center gap-3" style="color: #ef4444;">
+                        <span class="text-3xl">❌</span>
+                        Not for:
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-3 p-4 rounded-lg"
+                            style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.2);">
+                            <i class="fas fa-times-circle mt-1" style="color: #ef4444;"></i>
+                            <span style="color: var(--gray-light);">Free seekers looking for shortcuts</span>
+                        </div>
+                        <div class="flex items-start gap-3 p-4 rounded-lg"
+                            style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.2);">
+                            <i class="fas fa-times-circle mt-1" style="color: #ef4444;"></i>
+                            <span style="color: var(--gray-light);">People who want get-rich-quick schemes</span>
+                        </div>
+                        <div class="flex items-start gap-3 p-4 rounded-lg"
+                            style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.2);">
+                            <i class="fas fa-times-circle mt-1" style="color: #ef4444;"></i>
+                            <span style="color: var(--gray-light);">Time-pass ideas without serious commitment</span>
+                        </div>
+                        <div class="flex items-start gap-3 p-4 rounded-lg"
+                            style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.2);">
+                            <i class="fas fa-times-circle mt-1" style="color: #ef4444;"></i>
+                            <span style="color: var(--gray-light);">Those unwilling to invest in their business</span>
+                        </div>
+                        <div class="flex items-start gap-3 p-4 rounded-lg"
+                            style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.2);">
+                            <i class="fas fa-times-circle mt-1" style="color: #ef4444;"></i>
+                            <span style="color: var(--gray-light);">People looking for passive income fantasies</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What You Get Section -->
+    <section class="py-8" id="features" style="background: var(--black-primary);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="section-header fade-in">
+                <div class="gold-badge mb-4">
+                    🧠 Complete Support
+                </div>
+                <h2 class="display-font section-title">
+                    What You Get
+                </h2>
+                <p class="text-xl max-w-2xl mx-auto" style="color: var(--gray-medium);">
+                    Everything you need to build, launch, and scale your Ayurvedic brand
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature Cards -->
+                <div class="feature-card fade-in">
+                    <div class="feature-icon" style="width: 100%; height: inherit;">
+                        <img src="./Image/Get5.png" class=" w-full h-auto  rounded-2xl shadow-2xl  " alt="">
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3" style="color: var(--white-primary);">Product Research</h3>
+                    <p class="leading-relaxed" style="color: var(--gray-medium);">
+                        Expert guidance on selecting profitable products and creating authentic formulations.
+                    </p>
+                </div>
+
+                <div class="feature-card fade-in">
+                    <div class="feature-icon" style="width: 100%; height: inherit;">
+                        <img src="./Image/Get1.png" class=" w-full h-auto  rounded-2xl shadow-2xl  " alt="">
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3" style="color: var(--white-primary);">Manufacturing</h3>
+                    <p class="leading-relaxed" style="color: var(--gray-medium);">
+                        Complete clarity on manufacturing partnerships and quality control.
+                    </p>
+                </div>
+
+                <div class="feature-card fade-in">
+                    <div class="feature-icon" style="width: 100%; height: inherit;">
+                        <img src="./Image/Get2.png" class=" w-full h-auto  rounded-2xl shadow-2xl  " alt="">
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3" style="color: var(--white-primary);">Licensing</h3>
+                    <p class="leading-relaxed" style="color: var(--gray-medium);">
+                        Navigate regulatory requirements and certifications with confidence.
+                    </p>
+                </div>
+
+                <div class="feature-card fade-in">
+                    <div class="feature-icon" style="width: 100%; height: inherit;">
+                        <img src="./Image/Get3.png" class=" w-full h-auto rounded-2xl shadow-2xl  " alt="">
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3" style="color: var(--white-primary);">Brand Positioning</h3>
+                    <p class="leading-relaxed" style="color: var(--gray-medium);">
+                        Create compelling brand identity and packaging that sells.
+                    </p>
+                </div>
+
+                <div class="feature-card fade-in">
+                    <div class="feature-icon  " style="width: 100%; height: inherit;">
+                        <img src="./Image/Get4.png" class=" w-full h-auto rounded-2xl shadow-2xl  " alt="">
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3" style="color: var(--white-primary);">Marketing Strategy</h3>
+                    <p class="leading-relaxed" style="color: var(--gray-medium);">
+                        Proven marketing systems to reach your ideal customers.
+                    </p>
+                </div>
+
+                <div class="feature-card fade-in">
+                    <div class="feature-icon" style="width: 100%; height: inherit;">
+                        <img src="./Image/Get6.png" class=" w-full h-auto  rounded-2xl shadow-2xl  " alt="">
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3" style="color: var(--white-primary);">Scaling Strategy</h3>
+                    <p class="leading-relaxed" style="color: var(--gray-medium);">
+                        Strategic guidance on scaling without losing control.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="py-8"
+        style="background: linear-gradient(to bottom right, var(--black-secondary), var(--black-primary));">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <div class="gold-badge mb-4">
+                    🤝 Process
+                </div>
+                <h2 class="display-font text-4xl md:text-5xl font-bold mb-4 section-title">
+                    How It Works
+                </h2>
+                <p class="text-xl max-w-2xl mx-auto" style="color: var(--gray-medium);">
+                    Simple, straightforward process to get started
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center fade-in">
+                    <div class="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl font-bold shadow-xl"
+                        style="background: linear-gradient(to bottom right, var(--gold-primary), var(--gold-secondary)); color: var(--black-primary);">
+                        1
+                    </div>
+                    <h3 class="text-xl font-bold mb-3" style="color: var(--gold-secondary);">Book a Private Strategy
+                        Call</h3>
+                    <p style="color: var(--gray-medium);">Schedule your consultation with Sandeep Kumar</p>
+                </div>
+
+                <div class="text-center fade-in">
+                    <div class="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl font-bold shadow-xl"
+                        style="background: linear-gradient(to bottom right, var(--gold-primary), var(--gold-secondary)); color: var(--black-primary);">
+                        2
+                    </div>
+                    <h3 class="text-xl font-bold mb-3" style="color: var(--gold-secondary);">Discuss Your Vision</h3>
+                    <p style="color: var(--gray-medium);">Share your idea, goals, or current business situation</p>
+                </div>
+
+                <div class="text-center fade-in">
+                    <div class="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl font-bold shadow-xl"
+                        style="background: linear-gradient(to bottom right, var(--gold-primary), var(--gold-secondary)); color: var(--black-primary);">
+                        3
+                    </div>
+                    <h3 class="text-xl font-bold mb-3" style="color: var(--gold-secondary);">Check Mutual Fit</h3>
+                    <p style="color: var(--gray-medium);">Ensure alignment and growth potential together</p>
+                </div>
+
+                <div class="text-center fade-in">
+                    <div class="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl font-bold shadow-xl"
+                        style="background: linear-gradient(to bottom right, var(--gold-primary), var(--gold-secondary)); color: var(--black-primary);">
+                        4
+                    </div>
+                    <h3 class="text-xl font-bold mb-3" style="color: var(--gold-secondary);">Start Working Together</h3>
+                    <p style="color: var(--gray-medium);">Begin your journey with direct mentorship</p>
+                </div>
+            </div>
+
+            <div class="mt-16 grid md:grid-cols-3 gap-6 max-w-4xl mx-auto fade-in">
+                <div class="rounded-xl p-6 shadow-lg text-center"
+                    style="background: var(--black-tertiary); border: 1px solid rgba(212, 175, 55, 0.2);">
+                    <i class="fas fa-user-tie text-3xl mb-3" style="color: var(--gold-primary);"></i>
+                    <h4 class="font-bold mb-2" style="color: var(--white-primary);">Personal Attention</h4>
+                    <p class="text-sm" style="color: var(--gray-medium);">Direct access to Sandeep Kumar</p>
+                </div>
+                <div class="rounded-xl p-6 shadow-lg text-center"
+                    style="background: var(--black-tertiary); border: 1px solid rgba(212, 175, 55, 0.2);">
+                    <i class="fas fa-tasks text-3xl mb-3" style="color: var(--gold-primary);"></i>
+                    <h4 class="font-bold mb-2" style="color: var(--white-primary);">Practical Execution</h4>
+                    <p class="text-sm" style="color: var(--gray-medium);">Real, actionable steps you can implement</p>
+                </div>
+                <div class="rounded-xl p-6 shadow-lg text-center"
+                    style="background: var(--black-tertiary); border: 1px solid rgba(212, 175, 55, 0.2);">
+                    <i class="fas fa-check-double text-3xl mb-3" style="color: var(--gold-primary);"></i>
+                    <h4 class="font-bold mb-2" style="color: var(--white-primary);">Real Accountability</h4>
+                    <p class="text-sm" style="color: var(--gray-medium);">Stay on track with expert guidance</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Trust Section -->
+    <section class="py-8" style="background: var(--black-primary);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="fade-in">
+                    <div class="gold-badge mb-4">
+                        🏆 Credibility
+                    </div>
+                    <h2 class="display-font text-4xl md:text-5xl font-bold mb-6 section-title">
+                        Why Trust Sandeep Kumar?
+                    </h2>
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center"
+                                style="background: rgba(212, 175, 55, 0.2); border: 1px solid rgba(212, 175, 55, 0.3);">
+                                <i class="fas fa-building text-xl" style="color: var(--gold-primary);"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold mb-1" style="color: var(--white-primary);">Built Profitable Brand
+                                    from Scratch</h3>
+                                <p style="color: var(--gray-medium);">Real experience creating and scaling SS Herbal
+                                    successfully</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center"
+                                style="background: rgba(212, 175, 55, 0.2); border: 1px solid rgba(212, 175, 55, 0.3);">
+                                <i class="fas fa-hands-helping text-xl" style="color: var(--gold-primary);"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold mb-1" style="color: var(--white-primary);">Hands-On Industry
+                                    Experience</h3>
+                                <p style="color: var(--gray-medium);">Deep understanding of Ayurvedic market and
+                                    operations</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center"
+                                style="background: rgba(212, 175, 55, 0.2); border: 1px solid rgba(212, 175, 55, 0.3);">
+                                <i class="fas fa-newspaper text-xl" style="color: var(--gold-primary);"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold mb-1" style="color: var(--white-primary);">Recognized Through PR &
+                                    Media</h3>
+                                <p style="color: var(--gray-medium);">Featured in publications strengthening industry
+                                    credibility</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center"
+                                style="background: rgba(212, 175, 55, 0.2); border: 1px solid rgba(212, 175, 55, 0.3);">
+                                <i class="fas fa-chart-line text-xl" style="color: var(--gold-primary);"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold mb-1" style="color: var(--white-primary);">Complete Business
+                                    Clarity</h3>
+                                <p style="color: var(--gray-medium);">Operations, marketing, and growth strategies that
+                                    work</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center"
+                                style="background: rgba(212, 175, 55, 0.2); border: 1px solid rgba(212, 175, 55, 0.3);">
+                                <i class="fas fa-leaf text-xl" style="color: var(--gold-primary);"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold mb-1" style="color: var(--white-primary);">Focus on Ethical Growth
+                                </h3>
+                                <p style="color: var(--gray-medium);">Building sustainable, scalable Ayurvedic
+                                    businesses</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fade-in">
+                    <div class="rounded-3xl p-8 md:p-12"
+                        style="background: linear-gradient(to bottom right, rgba(212, 175, 55, 0.1), rgba(244, 196, 48, 0.05)); border: 1px solid rgba(212, 175, 55, 0.2);">
+                        <div class="mb-8">
+                            <img src="./Image/Sandeep.jpeg" alt="Sandeep Kumar - SS Herbal"
+                                class="rounded-2xl shadow-2xl w-full object-cover"
+                                style="max-height: 400px; border: 2px solid rgba(212, 175, 55, 0.3);">
+                        </div>
+                        <blockquote class="text-xl italic mb-6" style="color: var(--gray-light);">
+                            "Learning from someone who has already built success saves years of trial, error & losses."
+                        </blockquote>
+                        <div class="flex items-center gap-4">
+                            <div class="w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold"
+                                style="background: linear-gradient(to bottom right, var(--gold-primary), var(--gold-secondary)); color: var(--black-primary);">
+                                SK
+                            </div>
+                            <div>
+                                <div class="font-bold" style="color: var(--white-primary);">Sandeep Kumar</div>
+                                <div class="text-sm" style="color: var(--gray-medium);">Founder, SS Herbal</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <!-- Ceremony/Achievements Section -->
+    <section id="ceremony" class="py-8" id="gallary" style="background: var(--black-primary)">
+        <div class="max-w-7xl mx-auto mb-12 text-center">
+        <div class="inline-block px-4 py-2 rounded-full text-sm font-semibold mb-6"
+            style="background: rgba(251, 191, 36, 0.2); border: 1px solid var(--gold-primary); color: var(--gold-secondary);">
+            🏆 Achievements Availability
+        </div>
+        <h2 class="display-font text-4xl md:text-5xl font-bold mb-6 section-title">
+            SS Herbal's Journey to Success
+        </h2>
+        <p class="text-sm md:text-base">From humble beginnings to industry recognition — witness the
+                ceremonies, awards, and milestone moments that define our growth</p>
+        </div>
+
+        <div class="max-w-7xl mx-auto mb-12 text-center">
+            <h1 class="title text-5xl md:text-6xl font-bold mb-3"></h1>
+            
+        </div>
+
+        <!-- Gallery -->
+        <div class="gallery max-w-7xl mx-auto" id="gallery">
+            <div class="gallery-item">
+                <div class="content"><img src="./Image/Gallary1.jpg" alt="Gallery Image"></div>
+            </div>
+            <div class="gallery-item">
+                <div class="content"><img src="./Image/Gallary2.jpg" alt="Gallery Image"></div>
+            </div>
+            <div class="gallery-item">
+                <div class="content"><img src="./Image/Gallary2.jpg" alt="Gallery Image"></div>
+            </div>
+            <div class="gallery-item">
+                <div class="content"><img src="./Image/Gallary3.jpg" alt="Gallery Image"></div>
+            </div>
+            <div class="gallery-item">
+                <div class="content"><img src="./Image/Gallary5.jpg" alt="Gallery Image"></div>
+            </div>
+            <div class="gallery-item">
+                <div class="content"><img src="./Image/Gallary6.jpg" alt="Gallery Image"></div>
+            </div>
+            <div class="gallery-item">
+                <div class="content"><img src="./Image/Gallary7.jpeg" alt="Gallery Image"></div>
+            </div>
+            <div class="gallery-item">
+                <div class="content"><img src="./Image/Gallary8.jpeg" alt="Gallery Image"></div>
+            </div>
+            <div class="gallery-item">
+                <div class="content"><img src="./Image/Gallary9.jpeg" alt="Gallery Image"></div>
+            </div>
+            <div class="gallery-item">
+                <div class="content"><img src="./Image/Gallary10.jpeg" alt="Gallery Image"></div>
+            </div>
+            <div class="gallery-item">
+                <div class="content"><img src="./Image/Gallary11.jpeg" alt="Gallery Image"></div>
+            </div>
+        </div>
+
+    </section>
+       
+    <!-- YouTube Video Showcase Section -->
+    <section class="py-24" style="background: var(--black-primary);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="section-header fade-in">
+                <div class="gold-badge mb-4">
+                    🎥 Learn from the Experts
+                </div>
+                <h2 class="display-font section-title">
+                    Watch Our Ayurvedic Business Insights
+                </h2>
+                <p class="text-xl max-w-3xl mx-auto" style="color: var(--gray-medium);">
+                    Exclusive videos sharing real knowledge, strategies, and insights from the Ayurvedic industry
+                </p>
+            </div>
+            
+            <!-- Video Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 fade-in">
+                <!-- Video 1 -->
+                <div class="rounded-xl overflow-hidden border transition-all hover:scale-105 hover:shadow-2xl" style="background: var(--black-secondary); border-color: rgba(212, 175, 55, 0.2);">
+                    <div class="aspect-video">
+                        <iframe 
+                            width="100%" 
+                            height="100%" 
+                            src="https://www.youtube.com/embed/zoxX-QH0P3M" 
+                            title="YouTube video player" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen
+                            style="border-radius: 12px 12px 0 0;">
+                        </iframe>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-play-circle" style="color: var(--gold-primary);"></i>
+                            <p class="text-sm font-semibold" style="color: var(--gray-light);">Ayurvedic Business Insights</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Video 2 -->
+                <div class="rounded-xl overflow-hidden border transition-all hover:scale-105 hover:shadow-2xl" style="background: var(--black-secondary); border-color: rgba(212, 175, 55, 0.2);">
+                    <div class="aspect-video">
+                        <iframe 
+                            width="100%" 
+                            height="100%" 
+                            src="https://www.youtube.com/embed/jTkCusxiFXM" 
+                            title="YouTube video player" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen
+                            style="border-radius: 12px 12px 0 0;">
+                        </iframe>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-play-circle" style="color: var(--gold-primary);"></i>
+                            <p class="text-sm font-semibold" style="color: var(--gray-light);">Building Your Brand</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Video 3 -->
+                <div class="rounded-xl overflow-hidden border transition-all hover:scale-105 hover:shadow-2xl" style="background: var(--black-secondary); border-color: rgba(212, 175, 55, 0.2);">
+                    <div class="aspect-video">
+                        <iframe 
+                            width="100%" 
+                            height="100%" 
+                            src="https://www.youtube.com/embed/db_S9Esh7hw" 
+                            title="YouTube video player" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen
+                            style="border-radius: 12px 12px 0 0;">
+                        </iframe>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-play-circle" style="color: var(--gold-primary);"></i>
+                            <p class="text-sm font-semibold" style="color: var(--gray-light);">Market Strategies</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Video 4 -->
+                <div class="rounded-xl overflow-hidden border transition-all hover:scale-105 hover:shadow-2xl" style="background: var(--black-secondary); border-color: rgba(212, 175, 55, 0.2);">
+                    <div class="aspect-video">
+                        <iframe 
+                            width="100%" 
+                            height="100%" 
+                            src="https://www.youtube.com/embed/sf9f0fKXcps" 
+                            title="YouTube video player" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen
+                            style="border-radius: 12px 12px 0 0;">
+                        </iframe>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-play-circle" style="color: var(--gold-primary);"></i>
+                            <p class="text-sm font-semibold" style="color: var(--gray-light);">Scaling Your Business</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Video 5 -->
+                <div class="rounded-xl overflow-hidden border transition-all hover:scale-105 hover:shadow-2xl" style="background: var(--black-secondary); border-color: rgba(212, 175, 55, 0.2);">
+                    <div class="aspect-video">
+                        <iframe 
+                            width="100%" 
+                            height="100%" 
+                            src="https://www.youtube.com/embed/D7pk5SiE6co" 
+                            title="YouTube video player" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen
+                            style="border-radius: 12px 12px 0 0;">
+                        </iframe>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-play-circle" style="color: var(--gold-primary);"></i>
+                            <p class="text-sm font-semibold" style="color: var(--gray-light);">Industry Secrets</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Video 6 -->
+                <div class="rounded-xl overflow-hidden border transition-all hover:scale-105 hover:shadow-2xl" style="background: var(--black-secondary); border-color: rgba(212, 175, 55, 0.2);">
+                    <div class="aspect-video">
+                        <iframe 
+                            width="100%" 
+                            height="100%" 
+                            src="https://www.youtube.com/embed/1SZcRzXjGas" 
+                            title="YouTube video player" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen
+                            style="border-radius: 12px 12px 0 0;">
+                        </iframe>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-play-circle" style="color: var(--gold-primary);"></i>
+                            <p class="text-sm font-semibold" style="color: var(--gray-light);">Profit Strategies</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Video 7 -->
+                <div class="rounded-xl overflow-hidden border transition-all hover:scale-105 hover:shadow-2xl" style="background: var(--black-secondary); border-color: rgba(212, 175, 55, 0.2);">
+                    <div class="aspect-video">
+                        <iframe 
+                            width="100%" 
+                            height="100%" 
+                            src="https://www.youtube.com/embed/AnUGC3K4vU8" 
+                            title="YouTube video player" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen
+                            style="border-radius: 12px 12px 0 0;">
+                        </iframe>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-play-circle" style="color: var(--gold-primary);"></i>
+                            <p class="text-sm font-semibold" style="color: var(--gray-light);">Expert Guidance</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Video 8 -->
+                <div class="rounded-xl overflow-hidden border transition-all hover:scale-105 hover:shadow-2xl" style="background: var(--black-secondary); border-color: rgba(212, 175, 55, 0.2);">
+                    <div class="aspect-video">
+                        <iframe 
+                            width="100%" 
+                            height="100%" 
+                            src="https://www.youtube.com/embed/HWtnOJEAwV0" 
+                            title="YouTube video player" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen
+                            style="border-radius: 12px 12px 0 0;">
+                        </iframe>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-play-circle" style="color: var(--gold-primary);"></i>
+                            <p class="text-sm font-semibold" style="color: var(--gray-light);">Success Stories</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- CTA Below Videos -->
+            <div class="mt-12 text-center fade-in">
+                <div class="inline-block rounded-2xl p-8" style="background: linear-gradient(to right, rgba(212, 175, 55, 0.1), rgba(244, 196, 48, 0.05)); border: 1px solid rgba(212, 175, 55, 0.3);">
+                    <p class="text-xl mb-4" style="color: var(--gray-light);">
+                        Want to learn more? <strong style="color: var(--gold-secondary);">Subscribe to our YouTube channel</strong> for exclusive content!
+                    </p>
+                    <button onclick="scrollToContact()" class="cta-primary">
+                        <span>Book Your Strategy Call</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories / Testimonials Section -->
+    <section class="py-8" id="success" style="background: var(--black-primary);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="section-header fade-in">
+                <div class="gold-badge mb-4">
+                    💬 Client Success
+                </div>
+                <h2 class="display-font section-title">
+                    Real Results from Real Entrepreneurs
+                </h2>
+                <p class="text-xl max-w-2xl mx-auto" style="color: var(--gray-medium);">
+                    See how founders built profitable Ayurvedic brands with Sandeep's guidance
+                </p>
+            </div>
+
+            <!-- Swiper Testimonials -->
+            <div class="testimonial-swiper swiper">
+                <div class="swiper-wrapper">
+                    <!-- Testimonial 1 -->
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold"
+                                    style="background: linear-gradient(to bottom right, var(--gold-primary), var(--gold-secondary)); color: var(--black-primary);">
+                                    <img src="./Image/Client1.png" class="rounded-3xl" alt="">
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg" style="color: var(--white-primary);">Rahul Mehta
+                                    </h4>
+                                    <p class="text-sm" style="color: var(--gray-medium);">Ayurvedic Supplement Brand
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex gap-1 mb-4">
+                                <i class="fas fa-star" style="color: var(--gold-secondary);"></i>
+                                <i class="fas fa-star" style="color: var(--gold-secondary);"></i>
+                                <i class="fas fa-star" style="color: var(--gold-secondary);"></i>
+                                <i class="fas fa-star" style="color: var(--gold-secondary);"></i>
+                                <i class="fas fa-star" style="color: var(--gold-secondary);"></i>
+                            </div>
+                            <p class="leading-relaxed" style="color: var(--gray-light);">
+                                "Sandeep sir's practical approach helped me avoid costly mistakes. His profit-first
+                                mindset completely changed my business strategy. Within 6 months, we were
+                                profitable!"
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 2 -->
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold"
+                                    style="background: linear-gradient(to bottom right, var(--gold-primary), var(--gold-secondary)); color: var(--black-primary);">
+                                    <img src="./Image/Client5.png" class="rounded-3xl" alt="">
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg" style="color: var(--white-primary);">Priya Sharma
+                                    </h4>
+                                    <p class="text-sm" style="color: var(--gray-medium);">Women's Health Products
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex gap-1 mb-4">
+                                <i class="fas fa-star" style="color: var(--gold-secondary);"></i>
+                                <i class="fas fa-star" style="color: var(--gold-secondary);"></i>
+                                <i class="fas fa-star" style="color: var(--gold-secondary);"></i>
+                                <i class="fas fa-star" style="color: var(--gold-secondary);"></i>
+                                <i class="fas fa-star" style="color: var(--gold-secondary);"></i>
+                            </div>
+                            <p class="leading-relaxed" style="color: var(--gray-light);">
+                                "Clear roadmap from product selection to scaling. Sandeep's real-world experience
+                                made all the difference in our growth. Highly recommend to any serious
+                                entrepreneur!"
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 3 -->
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold"
+                                    style="background: linear-gradient(to bottom right, var(--gold-primary), var(--gold-secondary)); color: var(--black-primary);">
+                                    <img src="./Image/Client2.png" class="rounded-3xl" alt="">
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg" style="color: var(--white-primary);">Amit Kumar
+                                    </h4>
+                                    <p class="text-sm" style="color: var(--gray-medium);">Immunity & Wellness Range
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex gap-1 mb-4">
+                                <i class="fas fa-star" style="color: var(--gold-secondary);"></i>
+                                <i class="fas fa-star" style="color: var(--gold-secondary);"></i>
+                                <i class="fas fa-star" style="color: var(--gold-secondary);"></i>
+                                <i class="fas fa-star" style="color: var(--gold-secondary);"></i>
+                                <i class="fas fa-star" style="color: var(--gold-secondary);"></i>
+                            </div>
+                            <p class="leading-relaxed" style="color: var(--gray-light);">
+                                "The systems and processes Sandeep taught me saved months of confusion. Now we have
+                                a profitable, scalable brand with predictable revenue every month."
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 4 -->
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold"
+                                    style="background: linear-gradient(to bottom right, var(--gold-primary), var(--gold-secondary)); color: var(--black-primary);">
+                                    <img src="./Image/Client6.png" class="rounded-3xl" alt="">
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg" style="color: var(--white-primary);">Sneha Patel
+                                    </h4>
+                                    <p class="text-sm" style="color: var(--gray-medium);">Digestive Health Brand</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-1 mb-4">
+                                <i class="fas fa-star" style="color: var(--gold-secondary);"></i>
+                                <i class="fas fa-star" style="color: var(--gold-secondary);"></i>
+                                <i class="fas fa-star" style="color: var(--gold-secondary);"></i>
+                                <i class="fas fa-star" style="color: var(--gold-secondary);"></i>
+                                <i class="fas fa-star" style="color: var(--gold-secondary);"></i>
+                            </div>
+                            <p class="leading-relaxed" style="color: var(--gray-light);">
+                                "From zero to ₹50 lakhs in annual revenue in just 18 months. Sandeep's guidance on
+                                product formulation and compliance was invaluable. Worth every penny!"
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 5 -->
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold"
+                                    style="background: linear-gradient(to bottom right, var(--gold-primary), var(--gold-secondary)); color: var(--black-primary);">
+                                    <img src="./Image/Client3.png" class="rounded-3xl" alt="">
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg" style="color: var(--white-primary);">Vikram Singh
+                                    </h4>
+                                    <p class="text-sm" style="color: var(--gray-medium);">Men's Wellness Products
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex gap-1 mb-4">
+                                <i class="fas fa-star" style="color: var(--gold-secondary);"></i>
+                                <i class="fas fa-star" style="color: var(--gold-secondary);"></i>
+                                <i class="fas fa-star" style="color: var(--gold-secondary);"></i>
+                                <i class="fas fa-star" style="color: var(--gold-secondary);"></i>
+                                <i class="fas fa-star" style="color: var(--gold-secondary);"></i>
+                            </div>
+                            <p class="leading-relaxed" style="color: var(--gray-light);">
+                                "Best investment I made in my business. Sandeep's network and industry knowledge
+                                opened doors I didn't even know existed. My brand is now in 50+ stores!"
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 6 -->
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold"
+                                    style="background: linear-gradient(to bottom right, var(--gold-primary), var(--gold-secondary)); color: var(--black-primary);">
+                                    <img src="./Image/Client7.png" class="rounded-3xl" alt="">
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg" style="color: var(--white-primary);">Neha Desai
+                                    </h4>
+                                    <p class="text-sm" style="color: var(--gray-medium);">Hair & Skin Care Range</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-1 mb-4">
+                                <i class="fas fa-star" style="color: var(--gold-secondary);"></i>
+                                <i class="fas fa-star" style="color: var(--gold-secondary);"></i>
+                                <i class="fas fa-star" style="color: var(--gold-secondary);"></i>
+                                <i class="fas fa-star" style="color: var(--gold-secondary);"></i>
+                                <i class="fas fa-star" style="color: var(--gold-secondary);"></i>
+                            </div>
+                            <p class="leading-relaxed" style="color: var(--gray-light);">
+                                "The marketing strategies Sandeep shared transformed our online presence. We went
+                                from 0 to 10K followers in 4 months with consistent sales. Game-changing!"
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 7 -->
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold"
+                                    style="background: linear-gradient(to bottom right, var(--gold-primary), var(--gold-secondary)); color: var(--black-primary);">
+                                    <img src="./Image/Client4.png" class="rounded-3xl" alt="">
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg" style="color: var(--white-primary);">Karan
+                                        Malhotra</h4>
+                                    <p class="text-sm" style="color: var(--gray-medium);">Joint Health Products</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-1 mb-4">
+                                <i class="fas fa-star" style="color: var(--gold-secondary);"></i>
+                                <i class="fas fa-star" style="color: var(--gold-secondary);"></i>
+                                <i class="fas fa-star" style="color: var(--gold-secondary);"></i>
+                                <i class="fas fa-star" style="color: var(--gold-secondary);"></i>
+                                <i class="fas fa-star" style="color: var(--gold-secondary);"></i>
+                            </div>
+                            <p class="leading-relaxed" style="color: var(--gray-light);">
+                                "As a doctor, I knew the formulations but not the business. Sandeep filled all the
+                                gaps—from manufacturing to logistics to sales. My brand launched in record time!"
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 8 -->
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold"
+                                    style="background: linear-gradient(to bottom right, var(--gold-primary), var(--gold-secondary)); color: var(--black-primary);">
+                                    <img src="./Image/Client8.png" class="rounded-3xl" alt="">
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg" style="color: var(--white-primary);">Meera Iyer
+                                    </h4>
+                                    <p class="text-sm" style="color: var(--gray-medium);">Stress Management Range
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex gap-1 mb-4">
+                                <i class="fas fa-star" style="color: var(--gold-secondary);"></i>
+                                <i class="fas fa-star" style="color: var(--gold-secondary);"></i>
+                                <i class="fas fa-star" style="color: var(--gold-secondary);"></i>
+                                <i class="fas fa-star" style="color: var(--gold-secondary);"></i>
+                                <i class="fas fa-star" style="color: var(--gold-secondary);"></i>
+                            </div>
+                            <p class="leading-relaxed" style="color: var(--gray-light);">
+                                "Sandeep's attention to detail and commitment to ethical business practices aligned
+                                perfectly with my values. He's not just a consultant, he's a mentor for life!"
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Limited Availability Section -->
+    <section class="py-8" style="background: var(--black-secondary);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Header -->
+            <div class="text-center mb-12 md:mb-16 fade-in">
+                <div class="inline-block px-6 py-3 rounded-full text-sm font-semibold mb-6 limited-badge"
+                    style="background: rgba(251, 191, 36, 0.2); border: 1px solid var(--gold-primary); color: var(--gold-secondary);">
+                    ⏳ Limited Availability
+                </div>
+                <h2 class="display-font text-4xl md:text-5xl lg:text-6xl font-bold mb-4 section-title">
+                    Limited Monthly Slots Available
+                </h2>
+            </div>
+
+            <!-- Two Column Layout -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                
+                <!-- Image Column -->
+                <div class="order-2 lg:order-1 fade-in flex justify-center lg:justify-end">
+                    <img src="./Image/Limited.png" 
+                         class="w-full max-w-md lg:max-w-lg image-glow rounded-2xl" 
+                         alt="Limited Availability"
+                         style="border: 2px solid rgba(212, 175, 55, 0.2);">
+                </div>
+
+                <!-- Content Column -->
+                <div class="order-1 lg:order-2 fade-in">
+                    <div class="rounded-2xl p-8 md:p-10 lg:p-12 shadow-2xl"
+                        style="background: var(--black-tertiary); border: 2px solid rgba(212, 175, 55, 0.3);">
+                        
+                        <!-- Main Message -->
+                        <p class="text-xl md:text-2xl leading-relaxed mb-8" style="color: var(--gray-light);">
+                            To maintain quality and deliver real results, 
+                            <strong style="color: var(--gold-secondary);">
+                                Sandeep Kumar works with a limited number of clients each month
+                            </strong>.
+                        </p>
+                        
+                        <p class="text-lg md:text-xl mb-10" style="color: var(--gray-medium);">
+                            Each application is carefully reviewed to ensure mutual fit and growth potential.
+                        </p>
+                        
+                        <!-- Stats Grid -->
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
+                            <div class="stat-card rounded-xl p-6 text-center"
+                                style="background: rgba(212, 175, 55, 0.1); border: 1px solid rgba(212, 175, 55, 0.2);">
+                                <div class="text-3xl md:text-2xl font-bold mb-2" style="color: var(--gold-secondary);">
+                                    Personal
+                                </div>
+                                <div class="text-sm md:text-base" style="color: var(--gray-medium);">
+                                    Attention
+                                </div>
+                            </div>
+                            
+                            <div class="stat-card rounded-xl p-6 text-center"
+                                style="background: rgba(212, 175, 55, 0.1); border: 1px solid rgba(212, 175, 55, 0.2);">
+                                <div class="text-3xl md:text-2xl font-bold mb-2" style="color: var(--gold-secondary);">
+                                    Quality
+                                </div>
+                                <div class="text-sm md:text-base" style="color: var(--gray-medium);">
+                                    Over Quantity
+                                </div>
+                            </div>
+                            
+                            <div class="stat-card rounded-xl p-6 text-center"
+                                style="background: rgba(212, 175, 55, 0.1); border: 1px solid rgba(212, 175, 55, 0.2);">
+                                <div class="text-3xl md:text-2xl font-bold mb-2" style="color: var(--gold-secondary);">
+                                    Real
+                                </div>
+                                <div class="text-sm md:text-base" style="color: var(--gray-medium);">
+                                    Results
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Call to Action -->
+                        <div class="text-center p-6 rounded-xl" 
+                             style="background: rgba(212, 175, 55, 0.05); border: 1px dashed rgba(212, 175, 55, 0.3);">
+                            <p class="text-lg md:text-xl italic font-medium" style="color: var(--gold-primary);">
+                                Don't wait — secure your consulting slot before they're filled for the month.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-8" id="contact"
+        style="background: linear-gradient(135deg, var(--black-secondary), var(--black-primary));">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="section-header fade-in">
+                <div class="gold-badge mb-4">
+                    🚀 Take Action Now
+                </div>
+                <h2 class="display-font section-title">
+                    Ready to Build Your Brand?
+                </h2>
+                <p class="text-xl" style="color: var(--gray-medium);">
+                    Book your Private 1-to-1 Strategy Call and take the first step
+                </p>
+            </div>
+
+            <form class="form-container fade-in" id="contactForm">
+                <div class="space-y-6">
+                    <div>
+                        <input type="text" placeholder="Your Full Name *" required class="form-input">
+                    </div>
+                    <div>
+                        <input type="email" placeholder="Email Address *" required class="form-input">
+                    </div>
+                    <div>
+                        <input type="tel" placeholder="Phone Number *" required class="form-input">
+                    </div>
+                    <div>
+                        <select required class="form-input">
+                            <option value="">Select your current situation</option>
+                            <option value="planning">Planning to start</option>
+                            <option value="early-stage">Early stage (0-1 year)</option>
+                            <option value="growing">Growing business (1-3 years)</option>
+                            <option value="established">Established (3+ years)</option>
+                            <option value="investor">Investor / Looking to invest</option>
+                        </select>
+                    </div>
+                    <div>
+                        <textarea placeholder="Tell us about your goals *" rows="4" required
+                            class="form-input"></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        Book Your Free Strategy Call
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                    <p class="text-center text-sm" style="color: var(--gray-medium);">
+                        <i class="fas fa-lock mr-1" style="color: var(--gold-primary);"></i>
+                        Your information is 100% secure and will never be shared
+                    </p>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-12 mb-12">
+                <div>
+                    <h4 class="font-bold text-lg mb-4" style="color: var(--gold-secondary);">Ayurveda Blueprint</h4>
+                    <p style="color: var(--gray-medium);" class="leading-relaxed">
+                        Empowering entrepreneurs to build profitable Ayurvedic brands.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4" style="color: var(--gold-secondary);">Quick Links</h4>
+                    <nav class="space-y-2">
+                        <a href="#about" class="footer-link block transition-colors"
+                            style="color: var(--gray-medium);">About</a>
+                        <a href="#features" class="footer-link block transition-colors"
+                            style="color: var(--gray-medium);">Features</a>
+                        <a href="#success" class="footer-link block transition-colors"
+                            style="color: var(--gray-medium);">Success Stories</a>
+                    </nav>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4" style="color: var(--gold-secondary);">Contact</h4>
+                    <div class="space-y-2" style="color: var(--gray-medium);">
+                        <p><i class="fas fa-envelope mr-2" style="color: var(--gold-primary);"></i>
+                            info@ayurvedablueprint.com</p>
+                        <p><i class="fas fa-phone mr-2" style="color: var(--gold-primary);"></i> +91 98765 43210</p>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t pt-8 text-center"
+                style="border-color: rgba(212, 175, 55, 0.2); color: var(--gray-medium);">
+                <p>&copy; 2026 Ayurveda Blueprint. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        const gallery = document.querySelector('#gallery');
+
+        const getVal = (elem, style) => parseInt(window.getComputedStyle(elem).getPropertyValue(style));
+        const getHeight = (item) => item.querySelector('.content').getBoundingClientRect().height;
+
+        const resizeAll = () => {
+            const altura = getVal(gallery, 'grid-auto-rows');
+            const gap = getVal(gallery, 'grid-row-gap');
+            gallery.querySelectorAll('.gallery-item').forEach((item) => {
+                const el = item;
+                el.style.gridRowEnd = `span ${Math.ceil((getHeight(item) + gap) / (altura + gap))}`;
+            });
+        };
+
+        // Handle image loading and grid positioning
+        gallery.querySelectorAll('img').forEach((item) => {
+            if (item.complete) {
+                item.classList.add('loaded');
+                setTimeout(resizeAll, 100);
+            } else {
+                item.addEventListener('load', function () {
+                    const altura = getVal(gallery, 'grid-auto-rows');
+                    const gap = getVal(gallery, 'grid-row-gap');
+                    const gitem = item.parentElement.parentElement;
+                    gitem.style.gridRowEnd = `span ${Math.ceil((getHeight(gitem) + gap) / (altura + gap))}`;
+                    item.classList.add('loaded');
+                });
+            }
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', resizeAll);
+
+        // Handle click to expand
+        gallery.querySelectorAll('.gallery-item').forEach((item) => {
+            item.addEventListener('click', function () {
+                item.classList.toggle('full');
+            });
+        });
+
+        // Initial resize
+        setTimeout(resizeAll, 500);
+    </script>
+    <script>
+        // Initialize Swiper
+        const swiper = new Swiper('.testimonial-swiper', {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            loop: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                },
+                1024: {
+                    slidesPerView: 3,
+                },
+            },
+        });
+
+        // Typing Animation
+        const words = ['Ayurvedic', 'Sustainable', 'Scalable'];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typingText = document.getElementById('typingText');
+
+        function type() {
+            const currentWord = words[wordIndex];
+
+            if (isDeleting) {
+                typingText.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingText.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            if (!isDeleting && charIndex === currentWord.length) {
+                isDeleting = true;
+                setTimeout(type, 2000);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                setTimeout(type, 500);
+            } else {
+                setTimeout(type, isDeleting ? 50 : 100);
+            }
+        }
+
+        // Start typing animation
+        setTimeout(type, 1000);
+
+        // Mobile Menu
+        function toggleMobileMenu() {
+            const menu = document.querySelector('.mobile-menu');
+            menu.classList.toggle('active');
+        }
+
+        // Scroll to Contact
+        function scrollToContact() {
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Header Scroll Effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.site-header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Fade In Observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Form Submission
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you! We will contact you soon.');
+            e.target.reset();
+        });
+    </script>
+</body>
+
+</html>
