@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#00A1E4">
+    <title>Zero to Hero Ayurveda– Profit Blueprint</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom Fonts -->
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+   <link rel="shortcut icon" href="./Image/" type="image/x-icon">
+
+    <!-- Swiper.js CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        
+             @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+        :root {
+            /* === BRAND CORE COLORS (from logo) === */
+            --brand-primary: #22c55e;
+            --brand-secondary: #38bdf8;
+            --brand-accent: #0ea5e9;
+            /* === LIGHT & BACKGROUND SHADES === */
+            --brand-light: #f0fdf4;
+            --brand-muted: #ecfeff;
+            --page-bg: #ffffff;
+            /* === TEXT COLORS === */
+            --text-dark: #0f172a;
+            --text-body: #334155;
+            --text-muted: #64748b;
+            /* === STATUS & UI COLORS === */
+            --success-color: #16a34a;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            /* === BORDERS & SHADOWS === */
+            --border-light: #e5e7eb;
+            --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.08);
+            /* === RGB HELPERS === */
+            --brand-primary-rgb: 34, 197, 94;
+            --brand-secondary-rgb: 56, 189, 248;
+        }
+
+        /* Header theme overrides: white background, primary color accents */
+        .site-header {
+            background: #ffffff !important;
+            color: var(--color-primary) !important;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .site-header .nav-link,
+        .site-header .desktop-nav-hover {
+            color: var(--color-primary) !important;
+        }
+
+        .site-header .nav-link:hover {
+            color: var(--color-secondary) !important;
+        }
+
+        .site-header .hamburger span {
+            background: var(--color-primary) !important;
+        }
+
+        .site-header .logo-backdrop {
+            background: radial-gradient(circle, rgba(0, 161, 228, 0.12) 0%, transparent 70%);
+        }
+
+        .site-header .waveform-bar {
+            background: linear-gradient(180deg, var(--color-primary), var(--color-secondary)) !important;
+        }
+
+        .site-header .mobile-menu a {
+            color: var(--color-primary) !important;
+            border-color: rgba(0, 0, 0, 0.06);
+        }
+
+        .site-header .mobile-menu a:hover {
+            color: var(--color-secondary) !important;
+            border-color: var(--color-secondary) !important;
+        }
+
+
+        /* Custom animations and styles */
+        @keyframes pulse-glow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 25px rgba(0, 161, 228, 0.4), 0 0 50px rgba(60, 192, 80, 0.2);
+                transform: scale(1);
+            }
+
+            50% {
+                box-shadow: 0 0 40px rgba(0, 161, 228, 0.6), 0 0 80px rgba(60, 192, 80, 0.3);
+                transform: scale(1.03);
+            }
+        }
+
+        @keyframes logo-hover {
+
+            0%,
+            100% {
+                transform: scale(1) rotate(0deg);
+            }
+
+            25% {
+                transform: scale(1.1) rotate(-2deg);
+            }
+
+            75% {
+                transform: scale(1.1) rotate(2deg);
+            }
+        }
+
+        @keyframes logo-click {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(0.95) rotateY(180deg);
+            }
+
+            100% {
+                transform: scale(1.05) rotateY(360deg);
+            }
+        }
+
+        @keyframes nav-glow {
+
+            0%,
+            100% {
+                text-shadow: none;
+            }
+
+            50% {
+                text-shadow: 0 0 10px rgba(245, 158, 11, 0.8);
+            }
+        }
+
+        @keyframes waveform {
+
+            0%,
+            100% {
+                transform: scaleY(1);
+            }
+
+            50% {
+                transform: scaleY(1.3);
+            }
+        }
+
+        @keyframes gradient-shift {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        @keyframes breathing {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.9;
+            }
+
+            50% {
+                transform: scale(1.05);
+                opacity: 1;
+            }
+        }
+
+        @keyframes mic-vibrate {
+
+            0%,
+            100% {
+                transform: rotate(-1deg);
+            }
+
+            50% {
+                transform: rotate(1deg);
+            }
+        }
+        
+        /* Booking Form / Landing section - light background using brand colors */
+        .booking-form-section {
+            background:
+                radial-gradient(circle at 30% 20%, rgba(var(--brand-primary-rgb), 0.08) 0%, transparent 70%),
+                radial-gradient(circle at 80% 80%, rgba(var(--brand-secondary-rgb), 0.06) 0%, transparent 70%),
+                linear-gradient(180deg, var(--page-bg) 0%, #f8fafc 100%);
+            color: var(--text-dark);
+        }
+
+        /* Booking card on light landing */
+        .booking-card {
+            background: rgba(255, 255, 255, 0.98);
+            color: var(--color-dark);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            box-shadow:
+                0 8px 30px rgba(16, 24, 40, 0.06),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6);
+        }
+
+        /* Form scroll animation */
+        .form-animate {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .form-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Floating label inputs */
+        .floating-input {
+            position: relative;
+        }
+
+        .floating-input input {
+            background: rgba(255, 255, 255, 1);
+            border: 1px solid var(--border-light);
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+            padding-top: 1.5rem;
+        }
+
+        .floating-input input:focus {
+            outline: none;
+            border-color: rgba(var(--brand-secondary-rgb), 0.6);
+            box-shadow: 0 0 0 6px rgba(var(--brand-secondary-rgb), 0.08), 0 0 20px rgba(var(--brand-secondary-rgb), 0.06);
+            background: rgba(255, 255, 255, 1);
+        }
+
+        .floating-input label {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: all 0.3s ease;
+            pointer-events: none;
+            color: rgba(156, 163, 175, 0.8);
+            font-size: 16px;
+        }
+
+        .floating-input input:focus+label,
+        .floating-input input:not(:placeholder-shown)+label {
+            top: 8px;
+            transform: translateY(0);
+            font-size: 12px;
+            color: rgba(99, 102, 241, 0.9);
+            font-weight: 500;
+        }
+
+        /* Booking CTA button animations */
+        .booking-cta {
+            background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-secondary) 50%, var(--brand-accent) 100%);
+            background-size: 200% 200%;
+            animation: gradient-shift 4s ease infinite;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .booking-cta:hover {
+            transform: scale(1.05) translateY(-2px);
+            box-shadow:
+                0 20px 40px rgba(var(--brand-primary-rgb), 0.18),
+                0 10px 20px rgba(var(--brand-secondary-rgb), 0.15);
+            animation-duration: 2s;
+        }
+
+        .booking-cta:active {
+            transform: scale(0.98);
+        }
+
+        /* Pulse animation for CTA attention */
+        @keyframes cta-pulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(var(--brand-secondary-rgb), 0.35);
+            }
+
+            50% {
+                box-shadow: 0 0 0 10px rgba(var(--brand-secondary-rgb), 0);
+            }
+        }
+
+        .booking-cta.pulse {
+            animation: gradient-shift 4s ease infinite, cta-pulse 2s ease-in-out infinite;
+        }
+
+        /* Background glow effects */
+        .booking-glow-1 {
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(var(--brand-secondary-rgb), 0.12) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(40px);
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .booking-glow-2 {
+            position: absolute;
+            bottom: 20%;
+            right: 10%;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(var(--brand-primary-rgb), 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(36px);
+            animation: float 6s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(20px, -20px) scale(1.1);
+            }
+        }
+
+        /* Form validation states */
+        .floating-input input:invalid:not(:placeholder-shown) {
+            border-color: rgba(239, 68, 68, 0.6);
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+        }
+
+        .floating-input input:valid:not(:placeholder-shown) {
+            border-color: rgba(34, 197, 94, 0.6);
+            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2);
+        }
+        /* Logo continuous animation */
+        .logo-pulse {
+            animation: pulse-glow 3s ease-in-out infinite;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Enhanced logo hover effects */
+        .logo-container:hover .logo-pulse {
+            animation: logo-hover 0.6s ease-in-out;
+            box-shadow: 0 0 50px rgba(0, 161, 228, 0.85), 0 0 100px rgba(60, 192, 80, 0.4);
+            transform: scale(1.15);
+        }
+
+        .logo-container:active .logo-pulse {
+            animation: logo-click 0.8s ease-in-out;
+        }
+
+        /* Enhanced navigation hover effects */
+        .nav-link:hover {
+            animation: nav-glow 1.5s ease-in-out infinite;
+        }
+
+        /* Waveform bars animation */
+        .waveform-bar {
+            animation: waveform 2s ease-in-out infinite;
+        }
+
+        .waveform-bar:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .waveform-bar:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        .waveform-bar:nth-child(4) {
+            animation-delay: 0.6s;
+        }
+
+        /* CTA button continuous animation */
+        .cta-breathing {
+            background: linear-gradient(45deg, var(--color-primary), var(--color-secondary), var(--color-accent));
+            background-size: 300% 300%;
+            animation: gradient-shift 4s ease infinite, breathing 3s ease-in-out infinite;
+        }
+
+        /* Navigation underline animation */
+        .nav-link {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+            transition: left 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            left: 0;
+        }
+
+        /* Mobile menu animations */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        .hamburger span {
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+
+            .logo-pulse,
+            .waveform-bar,
+            .cta-breathing {
+                animation: none;
+            }
+
+            .nav-link::after,
+            .mobile-menu,
+            .hamburger span {
+                transition: none;
+            }
+        }
+
+        /* Ripple effect for CTA button */
+        .ripple {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ripple::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s;
+        }
+
+        .ripple:active::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Enhanced desktop-only effects */
+        @media (min-width: 1024px) {
+            .desktop-hover-scale:hover {
+                transform: scale(1.05) translateY(-2px);
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            }
+
+            .desktop-nav-hover:hover {
+          transform: translateY(-3px);
+                background: rgba(99, 102, 241, 0.1);
+                border-radius: 8px;
+                padding: 8px 16px;
+                margin: -8px -16px;
+            }
+        }
+
+        /* Deeper black theme styles */
+        .ultra-black {
+            background: linear-gradient(135deg, #000000 0%, #0a0a0a 50%, #000000 100%);
+        }
+
+        .logo-backdrop {
+            background: radial-gradient(circle, rgba(0, 161, 228, 0.15) 0%, rgba(0, 0, 0, 0.8) 70%);
+        }
+
+        /* Footer positioning - Simplified for full visibility */
+        .footer-reveal {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Footer theme: white background with primary accents */
+        .site-footer {
+            background: #ffffff;
+            color: var(--color-dark);
+            border-top: 1px solid rgba(0,0,0,0.06);
+        }
+
+        .site-footer h2, .site-footer h3, .site-footer h4 {
+            color: var(--color-primary) !important;
+            background: none !important;
+        }
+
+        .site-footer .footer-link,
+        .site-footer .text-gray-300,
+        .site-footer .text-gray-400,
+        .site-footer .text-gray-500 {
+            color: rgba(31, 41, 55, 0.75) !important;
+        }
+
+        .site-footer .footer-cta {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            color: #ffffff;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+        }
+
+        .site-footer .rounded-badge {
+            background: linear-gradient(135deg, rgba(0,161,228,0.12), rgba(60,192,80,0.08));
+            backdrop-filter: blur(6px);
+        }
+
+        .main-content {
+            position: relative;
+            z-index: 20;
+            background: inherit;
+            min-height: 100vh;
+        }
+
+        /* Scroll-triggered animations */
+        .scroll-fade-in {
+            opacity: 0;
+            transform: translateY(40px) scale(0.98);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .scroll-fade-in.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+           @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .animate-slide-up {
+            animation: slideUp 0.6s ease-out;
+        }
+
+        /* Arrow Bounce Animation */
+        @keyframes arrowBounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .animate-arrow-bounce {
+            animation: arrowBounce 1.5s ease-in-out infinite;
+        }
+
+        /* Button Glow on Hover */
+        @keyframes buttonGlow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(var(--brand-primary-rgb), 0.4);
+            }
+            50% {
+                box-shadow: 0 0 35px rgba(var(--brand-primary-rgb), 0.7);
+            }
+        }
+
+        .hover-glow:hover {
+            animation: buttonGlow 1.5s ease-in-out infinite;
+        }
+
+        /* Ripple Effect */
+        @keyframes ripple {
+            0% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .ripple-effect:active::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 12px;
+            transform: translate(-50%, -50%) scale(1);
+            animation: ripple 0.6s ease-out;
+        }
+    </style>
+
+ <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-primary': '#22c55e',
+                        'brand-secondary': '#38bdf8',
+                        'brand-accent': '#0ea5e9',
+                        'brand-light': '#f0fdf4',
+                        'brand-muted': '#ecfeff',
+                        'text-dark': '#0f172a',
+                        'text-body': '#334155',
+                        'text-muted': '#64748b',
+                        'success': '#16a34a',
+                        'warning': '#f59e0b',
+                        'danger': '#ef4444',
+                    }
+                }
+            }
+        }
+    </script>
+   
+
+</head>
+
+<body class="ultra-black text-white font-['Inter']">
+   
+
+    <!-- Premium Animated Header -->
+    <header
+        class="fixed top-0 left-0 right-0 z-50 ultra-black/98 backdrop-blur-lg border-b border-gray-700/50 shadow-2xl site-header">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+
+                <!-- Logo Area with Podcast-themed Animation -->
+                <div class="flex items-center space-x-4 group logo-container cursor-pointer">
+                    <!-- Animated Logo Container -->
+                    <div class="logo-pulse rounded-2xl 
+                    bg-transparent logo-backdrop desktop-hover-scale">
+                        <img src="./Image/logo.png" alt="Podcast Studio Logo" class="w-16 object-contain drop-shadow-lg"
+                            style="filter: brightness(1.1) contrast(1.1);">
+                    </div>
+
+                    <!-- Animated Waveform Visualization -->
+                    <div class="flex items-center space-x-1 group-hover:scale-110 transition-transform duration-300">
+                        <div class="waveform-bar w-1 h-4 bg-amber-400 rounded-full"></div>
+                        <div class="waveform-bar w-1 h-6 bg-yellow-400 rounded-full"></div>
+                        <div class="waveform-bar w-1 h-5 bg-orange-400 rounded-full"></div>
+                        <div class="waveform-bar w-1 h-7 bg-amber-400 rounded-full"></div>
+                    </div>
+
+                    <!-- Studio Name -->
+                    <div class="hidden sm:block">
+                        <h1
+                            class="text-xl font-bold"
+                            style="background: linear-gradient(90deg, var(--color-primary), var(--color-secondary)); -webkit-background-clip: text; background-clip: text; color: transparent;">
+                            Podcast Studio
+                        </h1>
+                        <p class="text-xs text-gray-400 -mt-1">Premium Recording Space</p>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation Menu -->
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="#home"
+                        class="nav-link desktop-nav-hover text-gray-300 hover:text-white transition-all duration-300 font-medium relative">
+                        Home
+                    </a>
+                    <a href="#studio-setup"
+                        class="nav-link desktop-nav-hover text-gray-300 hover:text-white transition-all duration-300 font-medium relative">
+                        Studio Setup
+                    </a>
+                    <a href="#open-mic"
+                        class="nav-link desktop-nav-hover text-gray-300 hover:text-white transition-all duration-300 font-medium relative">
+                        Open Mic
+                    </a>
+                    <a href="#pricing"
+                        class="nav-link desktop-nav-hover text-gray-300 hover:text-white transition-all duration-300 font-medium relative">
+                        Packeges
+                    </a>
+                    <a href="#how-it-works"
+                        class="nav-link desktop-nav-hover text-gray-300 hover:text-white transition-all duration-300 font-medium relative">
+                        How It Works
+                    </a>
+                    <a href="#reviews"
+                        class="nav-link desktop-nav-hover text-gray-300 hover:text-white transition-all duration-300 font-medium relative">
+                        Reviews
+                    </a>
+                </div>
+
+                <!-- CTA Button with Continuous Animation -->
+                <div class="flex items-center space-x-4">
+                    <button
+                        class="cta-breathing ripple desktop-hover-scale px-8 py-4 rounded-full text-white font-semibold shadow-2xl hover:scale-110 hover:shadow-2xl active:scale-95 transition-all duration-300 relative z-10"
+                        onclick="scrollToBooking()">
+                        Book Studio
+                    </button>
+
+                    <!-- Mobile Menu Toggle -->
+                    <button class="lg:hidden hamburger flex flex-col justify-center items-center w-8 h-8 space-y-1"
+                        onclick="toggleMobileMenu()">
+                        <span class="w-6 h-0.5 bg-gray-300 block"></span>
+                        <span class="w-6 h-0.5 bg-gray-300 block"></span>
+                        <span class="w-6 h-0.5 bg-gray-300 block"></span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu Panel -->
+        <div class="mobile-menu lg:hidden fixed top-20 right-0 h-full w-80 bg-gray-900/98 backdrop-blur-lg shadow-2xl">
+            <div class="p-6 space-y-6">
+                <!-- Mobile Navigation Links -->
+                <div class="space-y-4">
+                    <a href="#home"
+                        class="block text-gray-300 hover:text-white text-lg font-medium py-3 border-b border-gray-800 hover:border-amber-500 transition-all duration-300">
+                        Home
+                    </a>
+                    <a href="#open-mic"
+                        class="block text-gray-300 hover:text-white text-lg font-medium py-3 border-b border-gray-800 hover:border-amber-500 transition-all duration-300">
+                        Open Mic
+                    </a>
+                    <a href="#studio-setup"
+                        class="block text-gray-300 hover:text-white text-lg font-medium py-3 border-b border-gray-800 hover:border-amber-500 transition-all duration-300">
+                        Studio Setup
+                    </a>
+                    <a href="#pricing"
+                        class="block text-gray-300 hover:text-white text-lg font-medium py-3 border-b border-gray-800 hover:border-amber-500 transition-all duration-300">
+                        Packeges
+                    </a>
+                    <a href="#how-it-works"
+                        class="block text-gray-300 hover:text-white text-lg font-medium py-3 border-b border-gray-800 hover:border-amber-500 transition-all duration-300">
+                        How It Works
+                    </a>
+                    <a href="#reviews"
+                        class="block text-gray-300 hover:text-white text-lg font-medium py-3 border-b border-gray-800 hover:border-amber-500 transition-all duration-300">
+                        Reviews
+                    </a>
+                </div>
+
+                <!-- Mobile CTA Button -->
+                <button
+                    class="w-full cta-breathing ripple py-4 rounded-full text-white font-semibold shadow-lg active:scale-95 transition-all duration-300"
+                    onclick="scrollToBooking()">
+                    Book Studio Now
+                </button>
+
+                <!-- Contact Info -->
+                <div class="pt-6 border-t border-gray-800">
+                    <p class="text-gray-400 text-sm">Ready to record?</p>
+                    <p class="text-amber-400 font-semibold">Email: RACHNASHALASTUDIO@gmail.com</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Overlay for mobile menu -->
+    <div
+        class="mobile-overlay fixed inset-0 bg-black/50 backdrop-blur-sm z-40 opacity-0 pointer-events-none transition-opacity duration-300">
+    </div>
+
+    <!-- Page Content with Scroll-Behind Effect -->
+    <main class="main-content pt-2">
+
+      
+
+       
+
+    </main>
+
+    <!-- Premium Animated Footer with Scroll-Behind Effect -->
+    <footer class="footer-reveal footer-texture relative site-footer">
+        <!-- Depth shadow overlay -->
+        <div
+            class="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-transparent via-black/20 to-black/40 pointer-events-none">
+        </div>
+
+        <div class="container mx-auto px-4 py-8">
+            <!-- Main Footer Grid -->
+            <div
+                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6 lg:gap-8 xl:gap-12 mb-8 lg:mb-12">
+
+                <!-- About Section -->
+                <div class="footer-column lg:col-span-2 xl:col-span-2">
+                    <!-- Brand Logo in Footer -->
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div
+                            class="rounded-full p-2 rounded-badge">
+                            <img src="./Image/logo.avif" alt="Podcast Studio Logo" class="w-10 h-10 object-contain"
+                                style="filter: brightness(1.05) contrast(1.05);">
+                        </div>
+                        <div>
+                            <h2 class="text-lg font-bold" style="background: linear-gradient(90deg, var(--color-primary), var(--color-secondary)); -webkit-background-clip: text; background-clip: text; color: transparent;">
+                                Podcast Studio
+                            </h2>
+                            <p class="text-xs text-gray-400">Premium Recording Space</p>
+                        </div>
+                    </div>
+
+                    <h3 class="text-lg font-bold mb-4 text-white">About Our Podcast Studio</h3>
+                    <p class="text-gray-300 leading-relaxed mb-4 text-sm">
+                        We are a professional podcast studio rental offering fully equipped audio and video podcast
+                        recording services. Our studio provides microphones, cameras, lighting, acoustic treatment, and
+                        on-site technical support—so creators can focus on content, not setup.
+                    </p>
+                    <p class="text-gray-400 text-xs">
+                        Whether you are a podcaster, YouTuber, coach, or brand, our podcast recording studio helps you
+                        record high-quality content effortlessly.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-column">
+                    <h4 class="text-lg font-semibold mb-4 text-white">Quick Links</h4>
+                    <nav class="space-y-2">
+                        <a href="javascript:void(0)"
+                            onclick="document.querySelector('.studio-setup-section').scrollIntoView({behavior: 'smooth', block: 'start'})"
+                            class="footer-link block text-gray-300 hover:text-white transition-colors duration-300 text-sm">Podcast
+                            Studio Rental</a>
+                        <a href="javascript:void(0)"
+                            onclick="document.querySelector('.studio-setup-section').scrollIntoView({behavior: 'smooth', block: 'start'})"
+                            class="footer-link block text-gray-300 hover:text-white transition-colors duration-300 text-sm">Studio
+                            Setup</a>
+                        <a href="javascript:void(0)"
+                            onclick="document.querySelector('.pricing-section').scrollIntoView({behavior: 'smooth', block: 'start'})"
+                            class="footer-link block text-gray-300 hover:text-white transition-colors duration-300 text-sm">Pricing
+                            & Packages</a>
+                        <a href="javascript:void(0)" onclick="scrollToBooking()"
+                            class="footer-link block text-gray-300 hover:text-white transition-colors duration-300 text-sm">Book
+                            Podcast Studio</a>
+                        <a href="javascript:void(0)"
+                            onclick="document.querySelector('.faq-section').scrollIntoView({behavior: 'smooth', block: 'start'})"
+                            class="footer-link block text-gray-300 hover:text-white transition-colors duration-300 text-sm">FAQs</a>
+                        <a href="javascript:void(0)" onclick="scrollToBooking()"
+                            class="footer-link block text-gray-300 hover:text-white transition-colors duration-300 text-sm">Contact
+                            Us</a>
+                    </nav>
+                </div>
+
+                <!-- Services -->
+                <div class="footer-column">
+                    <h4 class="text-lg font-semibold mb-4 text-white">Services</h4>
+                    <nav class="space-y-2">
+                        <a href="javascript:void(0)" onclick="scrollToBooking()"
+                            class="footer-link block text-gray-300 hover:text-white transition-colors duration-300 text-sm">Podcast
+                            Studio Booking</a>
+                        <a href="javascript:void(0)"
+                            onclick="document.querySelector('.equipment-section').scrollIntoView({behavior: 'smooth', block: 'start'})"
+                            class="footer-link block text-gray-300 hover:text-white transition-colors duration-300 text-sm">Audio
+                            Podcast Recording</a>
+                        <a href="javascript:void(0)"
+                            onclick="document.querySelector('.equipment-section').scrollIntoView({behavior: 'smooth', block: 'start'})"
+                            class="footer-link block text-gray-300 hover:text-white transition-colors duration-300 text-sm">Video
+                            Podcast Recording</a>
+                        <a href="javascript:void(0)"
+                            onclick="document.querySelector('.studio-setup-section').scrollIntoView({behavior: 'smooth', block: 'start'})"
+                            class="footer-link block text-gray-300 hover:text-white transition-colors duration-300 text-sm">YouTube
+                            Podcast Studio</a>
+                        <a href="javascript:void(0)"
+                            onclick="document.querySelector('.equipment-section').scrollIntoView({behavior: 'smooth', block: 'start'})"
+                            class="footer-link block text-gray-300 hover:text-white transition-colors duration-300 text-sm">Podcast
+                            Editing Services</a>
+                        <a href="javascript:void(0)"
+                            onclick="document.querySelector('.testimonials-section').scrollIntoView({behavior: 'smooth', block: 'start'})"
+                            class="footer-link block text-gray-300 hover:text-white transition-colors duration-300 text-sm">Reels
+                            & Shorts Creation</a>
+                    </nav>
+                </div>
+
+                <!-- Contact & Location -->
+                <div class="footer-column lg:col-span-4 xl:col-span-5">
+                    <h4 class="text-lg font-semibold mb-4 text-white">Studio Location & Contact</h4>
+
+                    <!-- Desktop Row Layout -->
+                    <div class="lg:flex lg:space-x-8 lg:items-start space-y-4 lg:space-y-0">
+                        <!-- Address Section -->
+                        <div class="lg:flex-1">
+                            <address class="text-gray-300 not-italic">
+                                <p class="font-medium text-white mb-2 text-sm">Podcast Studio Address:</p>
+                                <p class="mb-1 text-sm">415, Sector-37, Faridabad, Haryana</p>
+                                <p class="text-sm text-gray-400 mb-1">Parking Available</p>
+                                <p class="text-sm text-gray-400 mb-3">Public Transport Nearby</p>
+                                <p class="text-xs" style="color:var(--color-primary)">Search-friendly: Podcast studio near you</p>
+                            </address>
+                        </div>
+
+
+
+                        <!-- Timings & CTA Section -->
+                        <div class="lg:flex-1">
+                            <div class="bg-white/5 rounded-lg p-3 backdrop-blur">
+                                <p class="text-sm font-semibold text-white mb-2">Studio Timings:</p>
+                                <p class="text-sm text-gray-300 mb-3">Monday – Sunday | 10:00 AM – 7:00 PM</p>
+                                <button
+                                    class="footer-cta w-full py-2 px-4 rounded-full text-white font-semibold text-sm"
+                                    style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));"
+                                    onclick="scrollToBooking()">
+                                    Book Your Podcast Studio Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Why Choose Us Section -->
+            <div class="footer-column mb-12 border-t border-gray-800 pt-12">
+                <h4 class="text-lg font-semibold mb-6 text-white text-center">Why Choose Our Podcast Studio</h4>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 text-center">
+                    <div class="bg-white/5 rounded-lg p-4 backdrop-blur">
+                        <p class="text-sm text-gray-300">Fully equipped podcast studio</p>
+                    </div>
+                    <div class="bg-white/5 rounded-lg p-4 backdrop-blur">
+                        <p class="text-sm text-gray-300">Professional sound & video quality</p>
+                    </div>
+                    <div class="bg-white/5 rounded-lg p-4 backdrop-blur">
+                        <p class="text-sm text-gray-300">Beginner-friendly environment</p>
+                    </div>
+                    <div class="bg-white/5 rounded-lg p-4 backdrop-blur">
+                        <p class="text-sm text-gray-300">On-site technical assistance</p>
+                    </div>
+                    <div class="bg-white/5 rounded-lg p-4 backdrop-blur">
+                        <p class="text-sm text-gray-300">Flexible hourly & daily booking</p>
+                    </div>
+                    <div class="bg-white/5 rounded-lg p-4 backdrop-blur">
+                        <p class="text-sm text-gray-300">Central, accessible location</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Media & Legal -->
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col lg:flex-row justify-between items-center space-y-6 lg:space-y-0">
+
+                    <!-- Social Media -->
+                    <div class="flex items-center space-x-6">
+                        <span class="text-gray-400 text-sm font-medium">Follow Us:</span>
+                        <div class="flex space-x-4">
+                            <a href="https://www.instagram.com/rachnashala"
+                                class="social-icon w-12 h-12 bg-white/10 rounded-full flex items-center justify-center backdrop-blur hover:bg-white/20">
+                                <img src="https://cdn-icons-png.flaticon.com/128/174/174855.png" alt="Instagram"
+                                    class="w-6 h-6 object-contain">
+                            </a>
+                            <a href="https://www.youtube.com/@rachnashala"
+                                class="social-icon w-12 h-12 bg-white/10 rounded-full flex items-center justify-center backdrop-blur hover:bg-white/20">
+                                <img src="https://cdn-icons-png.flaticon.com/128/5968/5968852.png" alt="YouTube"
+                                    class="w-6 h-6 object-contain">
+                            </a>
+                            <!-- <a href="#"
+                                class="social-icon w-12 h-12 bg-white/10 rounded-full flex items-center justify-center backdrop-blur hover:bg-white/20">
+                                <img src="https://cdn-icons-png.flaticon.com/128/5969/5969020.png" alt="X.com"
+                                    class="w-6 h-6 object-contain">
+                            </a> -->
+                            <a href="https://www.facebook.com/profile.php?id=61573420060802"
+                                class="social-icon w-12 h-12 bg-white/10 rounded-full flex items-center justify-center backdrop-blur hover:bg-white/20">
+                                <img src="https://cdn-icons-png.flaticon.com/128/733/733547.png" alt="Facebook"
+                                    class="w-6 h-6 object-contain">
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Legal Links
+                    <nav class="flex space-x-6 text-sm">
+                        <a href="#terms" class="footer-link text-gray-400 hover:text-white">Terms & Conditions</a>
+                        <a href="#privacy" class="footer-link text-gray-400 hover:text-white">Privacy Policy</a>
+                        <a href="#refund" class="footer-link text-gray-400 hover:text-white">Refund & Cancellation
+                            Policy</a>
+                    </nav> -->
+                </div>
+
+                <!-- Copyright -->
+                <div class="mt-8 pt-6 border-t border-gray-800 text-center">
+                    <p class="text-gray-400 text-sm mb-2">
+                        © 2026 Podcast Studio Rental. All rights reserved.
+                    </p>
+                    <p class="text-gray-500 text-xs">
+                        Designed for podcasters, creators, and brands who want professional-quality recordings.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+       <!-- Fixed Bottom CTA -->
+    <div id="fixedCTA" class="fixed bottom-0 left-0 w-full z-50 pointer-events-none animate-slide-up">
+        <div class="pointer-events-auto bg-white border-t border-border-light shadow-[0_-10px_40px_rgba(0,0,0,0.1)]">
+            <!-- Mobile Layout (< 768px) -->
+            <div class="block md:hidden px-4 py-3">
+                <div class="flex flex-col gap-2">
+                    <!-- Text Content -->
+                    <div class="text-center">
+                        <p class="text-text-dark font-bold text-base leading-tight mb-1">
+                            Ready to Build Your Ayurvedic Brand?
+                        </p>
+                        <p class="text-text-muted text-xs">
+                            Book your 1-to-1 strategy call now
+                        </p>
+                    </div>
+                    
+                    <!-- CTA Button -->
+                    <a href="#contact" 
+                       onclick="handleCTAClick(event)"
+                       class="relative overflow-hidden bg-brand-primary hover:bg-success text-white font-bold text-center py-3.5 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] ripple-effect hover-glow flex items-center justify-center gap-2 no-underline">
+                        <span>Book Your Call Now</span>
+                        <i class="fas fa-arrow-right animate-arrow-bounce"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Tablet/Desktop Layout (≥ 768px) -->
+            <div class="hidden md:block px-6 lg:px-8 py-4">
+                <div class="max-w-7xl mx-auto flex items-center justify-between gap-6">
+                    <!-- Left Side - Icon & Text -->
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-brand-primary rounded-xl flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-rocket text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-text-dark font-bold text-lg leading-tight mb-0.5">
+                                Ready to Build a Profitable Ayurvedic Brand Like SS Herbal?
+                            </p>
+                            <p class="text-text-muted text-sm">
+                                Book your Private 1-to-1 Strategy Call and take the first step toward a real, scalable business.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Right Side - CTA Button -->
+                    <div class="flex items-center gap-3 flex-shrink-0">
+                        <div class="text-center hidden lg:block">
+                            <div class="text-text-muted text-xs mb-1 animate-arrow-bounce">
+                                👇👇👇
+                            </div>
+                        </div>
+                        <a href="#contact" 
+                           onclick="handleCTAClick(event)"
+                           class="relative overflow-hidden bg-brand-primary hover:bg-success text-white font-bold py-4 px-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95 ripple-effect hover-glow whitespace-nowrap flex items-center gap-2 no-underline">
+                            <span>Book Your Consulting Call Now</span>
+                            <i class="fas fa-arrow-right animate-arrow-bounce"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+   
+
+    <script>
+        // Smooth scroll to booking section function
+        function scrollToBooking() {
+            const bookingSection = document.querySelector('.booking-form-section');
+            if (bookingSection) {
+                bookingSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+                // Close mobile menu if open
+                const mobileMenu = document.querySelector('.mobile-menu');
+                const hamburger = document.querySelector('.hamburger');
+                if (mobileMenu && mobileMenu.classList.contains('active')) {
+                    mobileMenu.classList.remove('active');
+                    hamburger.classList.remove('active');
+                }
+            }
+        }
+
+        // Mobile menu toggle function
+        function toggleMobileMenu() {
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const hamburger = document.querySelector('.hamburger');
+            const overlay = document.querySelector('.mobile-overlay');
+
+            mobileMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+
+            if (mobileMenu.classList.contains('active')) {
+                overlay.classList.add('opacity-100', 'pointer-events-auto');
+                overlay.classList.remove('opacity-0', 'pointer-events-none');
+            } else {
+                overlay.classList.remove('opacity-100', 'pointer-events-auto');
+                overlay.classList.add('opacity-0', 'pointer-events-none');
+            }
+        }
+
+        // Footer entrance animation on scroll
+        function initFooterAnimations() {
+            const footerColumns = document.querySelectorAll('.footer-column');
+            const footer = document.querySelector('footer');
+
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '50px 0px -100px 0px'
+            };
+
+            const footerObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Add staggered animation to columns
+                        footerColumns.forEach((column, index) => {
+                            setTimeout(() => {
+                                column.classList.add('animate');
+                            }, index * 100);
+                        });
+
+                        // Add fade-in effect to entire footer
+                        footer.classList.add('scroll-fade-in');
+                        setTimeout(() => {
+                            footer.classList.add('visible');
+                        }, 100);
+                    }
+                });
+            }, observerOptions);
+
+            if (footer) {
+                footerObserver.observe(footer);
+            }
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            initFooterAnimations();
+            initBookingForm();
+
+            // Add scroll functionality to all CTA buttons that don't have onclick
+            document.querySelectorAll('.cta-breathing, .booking-cta').forEach(button => {
+                if (!button.hasAttribute('onclick')) {
+                    button.addEventListener('click', scrollToBooking);
+                }
+            });
+        });
+
+        // Booking form animations and functionality
+        function initBookingForm() {
+            const formSection = document.querySelector('.form-animate');
+            const bookingForm = document.getElementById('bookingForm');
+            const submitBtn = document.getElementById('submitBtn');
+
+            // Form entrance animation on scroll
+            const formObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.2,
+                rootMargin: '50px 0px'
+            });
+
+            if (formSection) {
+                formObserver.observe(formSection);
+            }
+
+            // Form submission handling
+            if (bookingForm) {
+                bookingForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+
+                    // Add loading state
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = '<span class="relative z-10">Booking...</span>';
+                    submitBtn.classList.remove('pulse');
+
+                    // Simulate form submission (replace with actual submission logic)
+                    setTimeout(() => {
+                        submitBtn.innerHTML = '<span class="relative z-10">✓ Booking Submitted!</span>';
+                        submitBtn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+
+                        // Reset form after success
+                        setTimeout(() => {
+                            bookingForm.reset();
+                            submitBtn.disabled = false;
+                            submitBtn.innerHTML = '<span class="relative z-10">Book Studio Now</span>';
+                            submitBtn.style.background = '';
+                            submitBtn.classList.add('pulse');
+                        }, 3000);
+                    }, 2000);
+                });
+            }
+
+            // Enhanced input focus effects
+            const inputs = document.querySelectorAll('.floating-input input');
+            inputs.forEach(input => {
+                input.addEventListener('focus', function () {
+                    this.parentElement.style.transform = 'scale(1.02)';
+                });
+
+                input.addEventListener('blur', function () {
+                    this.parentElement.style.transform = 'scale(1)';
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>
